@@ -1,0 +1,18 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'FamixSQL',
+      #directory : 'src',
+      #platforms : [ #pharo ],
+      #onConflict : #useIncoming,
+      #onUpgrade : #useIncoming
+    }
+  ],
+  #testing: {
+    #packages : [ 'SQL-Model-.*' ],
+    #coverage : {
+      #packages : [ 'SQL-Model-.*' ],
+      #format : #lcov
+    }
+  }
+}
