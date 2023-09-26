@@ -72,5 +72,5 @@ One can also perform common request by scripting
 
 ## Acknowledgement
 
-Many thanks to Julien Deplanque who made the [first version of this work](juliendelplanque/FAMIXNGSQL).
+Many thanks to Julien Deplanque who made the [first version of this work](https://github.com/juliendelplanque/FAMIXNGSQL).
 If you attend to manipulate **PostgresQL** database, his work will fit your need.
