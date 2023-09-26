@@ -28,7 +28,7 @@ After loading the project, you should create a connection between Pharo and the 
 connection := ODBCConnection new.
 connection dsn: '<dsn name>'.
 connection uid: '<username>'. "Username"
-connection pwd: '<password>'. "Password
+connection pwd: '<password>'. "Password"
 connection connect.
 ```
 
