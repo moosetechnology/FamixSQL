@@ -84,6 +84,20 @@ FamixSQLImporter >> ensureCreateTable: tableName [
 			  table ]
 ]
 
+{ #category : #importing }
+FamixSQLImporter >> ensureCreateView: viewName [
+
+	^ model asOrderedCollection
+		  detect: [ :el | 
+		  (el isKindOf: FmxSQLQView) and: [ el name = viewName ] ]
+		  ifNone: [ 
+			  | view |
+			  view := FmxSQLQView new.
+			  view name: viewName.
+			  self model add: view.
+			  view ]
+]
+
 { #category : #initialization }
 FamixSQLImporter >> initialize [
 

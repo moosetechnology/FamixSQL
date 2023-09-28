@@ -76,9 +76,18 @@ FamixSQLODBCImporter >> columns: aTableName [
 { #category : #importing }
 FamixSQLODBCImporter >> import [
 
+	self importTables.
+	self importViews.
+
+	^ self model
+]
+
+{ #category : #importing }
+FamixSQLODBCImporter >> importTables [
+
 	self sourceTables do: [ :tableName | 
 		| table |
-		('import struct of: ' , tableName) recordInfo.
+		('import struct of TABLE: ' , tableName) traceCr.
 		table := self ensureCreateTable: tableName.
 		(self columns: tableName) do: [ :column | 
 			| sqlColumn |
@@ -93,7 +102,7 @@ FamixSQLODBCImporter >> import [
 
 	self sourceTables do: [ :tableName | 
 		| table foreignKeys |
-		('import foreignkeys of: ' , tableName) recordInfo.
+		('import foreignkeys of TABLE: ' , tableName) traceCr.
 		table := self ensureCreateTable: tableName.
 		foreignKeys := self source
 			               queryForeignKeysOf: tableName
@@ -103,10 +112,16 @@ FamixSQLODBCImporter >> import [
 	^ self model
 ]
 
-{ #category : #initialization }
-FamixSQLODBCImporter >> initialize [
+{ #category : #importing }
+FamixSQLODBCImporter >> importViews [
 
-	super initialize.
+	self sourceViews do: [ :viewName | 
+		| view |
+		('import struct of VIEW: ' , viewName) traceCr.
+		view := self ensureCreateView: viewName.
+		(self columns: viewName) do: [ :column | 
+			| sqlColumn |
+			sqlColumn := self ensureCreateColumn: column name for: view ] ].
 
 ]
 
@@ -140,6 +155,18 @@ FamixSQLODBCImporter >> sourceTables [
 	^ self schema ifNil: [ self source tables ] ifNotNil: [ :sch | 
 		  (self source exec:
 			   ('SELECT table_name from all_tables where owner = ''{schemaName}''' 
+				    format: (Dictionary with: #schemaName -> sch))) results 
+			  flatCollect: #contents ]
+]
+
+{ #category : #importing }
+FamixSQLODBCImporter >> sourceViews [
+
+	^ self schema
+		ifNil: [ self source views ]
+		ifNotNil: [ :sch | 
+		  (self source exec:
+			   ('SELECT view_name from all_views where owner = ''{schemaName}''' 
 				    format: (Dictionary with: #schemaName -> sch))) results 
 			  flatCollect: #contents ]
 ]
