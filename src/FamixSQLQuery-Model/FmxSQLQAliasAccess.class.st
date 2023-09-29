@@ -3,7 +3,7 @@ I am an access to an alias.
 "
 Class {
 	#name : #FmxSQLQAliasAccess,
-	#superclass : #FamixSQLReference,
+	#superclass : #AnObsoleteFamixSQLReference,
 	#traits : 'FamixTAccess + FmxSQLQTWithQualifiedReference',
 	#classTraits : 'FamixTAccess classTrait + FmxSQLQTWithQualifiedReference classTrait',
 	#category : #'FamixSQLQuery-Model-Entities'

@@ -15,5 +15,5 @@ FamixSQLReference class >> annotation [
 	<FMClass: #Reference super: #FamixSQLEntity>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
+	^ self
 ]

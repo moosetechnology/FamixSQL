@@ -4,8 +4,6 @@ I model the special OLD local variable accessible from inside trigger stored pro
 Class {
 	#name : #FmxSQLQOldLocalVariable,
 	#superclass : #FmxSQLQLocalVariable,
-	#traits : 'FamixSQLTColumnsContainer',
-	#classTraits : 'FamixSQLTColumnsContainer classTrait',
 	#category : #'FamixSQLQuery-Model-Entities'
 }
 

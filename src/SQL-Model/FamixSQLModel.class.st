@@ -1,6 +1,8 @@
 Class {
 	#name : #FamixSQLModel,
 	#superclass : #MooseModel,
+	#traits : 'FamixSQLTEntityCreator',
+	#classTraits : 'FamixSQLTEntityCreator classTrait',
 	#category : #'SQL-Model-Model'
 }
 
@@ -15,10 +17,4 @@ FamixSQLModel class >> annotation [
 	<FMClass: #FamixSQLModel super: #MooseModel>
 	<package: #'SQL-Model'>
 	<generated>
-]
-
-{ #category : #testing }
-FamixSQLModel class >> canBeImportedFromFile [
-	<generated>
-	^true
 ]

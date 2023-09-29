@@ -82,7 +82,7 @@ Class {
 		'tQueryContainer',
 		'tColumn'
 	],
-	#category : #'SQLQuery-Model-Generator'
+	#category : #'SQL-Model-Generator'
 }
 
 { #category : #accessing }
@@ -98,7 +98,7 @@ FmxSQLMetamodelGenerator class >> prefix [
 { #category : #accessing }
 FmxSQLMetamodelGenerator class >> submetamodels [
 
-	^ { SQLMetamodelGenerator }
+	^ { FamixStructuralSQLGenerator }
 ]
 
 { #category : #'comments - SQL' }

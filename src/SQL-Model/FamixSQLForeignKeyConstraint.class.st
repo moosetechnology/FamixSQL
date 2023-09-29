@@ -1,6 +1,6 @@
 Class {
 	#name : #FamixSQLForeignKeyConstraint,
-	#superclass : #FamixSQLConstraint,
+	#superclass : #FamixSQLTableConstraint,
 	#instVars : [
 		'#foreignKeyColumnReferences => FMMany type: #FamixSQLColumnReference opposite: #foreignKeySource'
 	],
@@ -10,10 +10,10 @@ Class {
 { #category : #meta }
 FamixSQLForeignKeyConstraint class >> annotation [
 
-	<FMClass: #ForeignKeyConstraint super: #FamixSQLConstraint>
+	<FMClass: #ForeignKeyConstraint super: #FamixSQLTableConstraint>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #adding }

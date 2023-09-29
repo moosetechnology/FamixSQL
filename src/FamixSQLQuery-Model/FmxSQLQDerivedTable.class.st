@@ -4,8 +4,8 @@ I am a derived table. A derived table is a temporary table created to store temp
 Class {
 	#name : #FmxSQLQDerivedTable,
 	#superclass : #FmxSQLQEntity,
-	#traits : 'FamixSQLTColumnsContainer + FamixTNamedEntity + FmxSQLQBehaviouralEntity + FmxSQLQTQueryContainer',
-	#classTraits : 'FamixSQLTColumnsContainer classTrait + FamixTNamedEntity classTrait + FmxSQLQBehaviouralEntity classTrait + FmxSQLQTQueryContainer classTrait',
+	#traits : 'FamixTNamedEntity + FmxSQLQBehaviouralEntity + FmxSQLQTQueryContainer',
+	#classTraits : 'FamixTNamedEntity classTrait + FmxSQLQBehaviouralEntity classTrait + FmxSQLQTQueryContainer classTrait',
 	#instVars : [
 		'#parentQuery => FMOne type: #FmxSQLQTDefiningDerivedTables opposite: #derivedTablesDefined',
 		'#query => FMOne type: #FmxSQLQCRUDQuery opposite: #derivedTableDefining',

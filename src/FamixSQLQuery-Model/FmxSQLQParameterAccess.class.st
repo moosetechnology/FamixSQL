@@ -3,7 +3,7 @@ I am an access to a stored procedure parameter.
 "
 Class {
 	#name : #FmxSQLQParameterAccess,
-	#superclass : #FamixSQLReference,
+	#superclass : #AnObsoleteFamixSQLReference,
 	#traits : 'FamixTAccess',
 	#classTraits : 'FamixTAccess classTrait',
 	#category : #'FamixSQLQuery-Model-Entities'

@@ -3,7 +3,7 @@ I am a reference to a view.
 "
 Class {
 	#name : #FmxSQLQViewReference,
-	#superclass : #FamixSQLReference,
+	#superclass : #AnObsoleteFamixSQLReference,
 	#traits : 'FmxSQLQTWithQualifiedReference',
 	#classTraits : 'FmxSQLQTWithQualifiedReference classTrait',
 	#instVars : [

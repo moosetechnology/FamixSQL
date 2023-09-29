@@ -3,7 +3,7 @@ I am an access to a local variable in a procedure.
 "
 Class {
 	#name : #FmxSQLQLocalVariableAccess,
-	#superclass : #FamixSQLReference,
+	#superclass : #AnObsoleteFamixSQLReference,
 	#traits : 'FamixTAccess + FmxSQLQTWithQualifiedReference',
 	#classTraits : 'FamixTAccess classTrait + FmxSQLQTWithQualifiedReference classTrait',
 	#instVars : [

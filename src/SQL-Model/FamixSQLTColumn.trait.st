@@ -12,7 +12,7 @@ FamixSQLTColumn classSide >> annotation [
 	<FMClass: #TColumn super: #Object>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #accessing }

@@ -15,7 +15,7 @@ FamixSQLTColumnsContainer classSide >> annotation [
 	<FMClass: #TColumnsContainer super: #Object>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #adding }

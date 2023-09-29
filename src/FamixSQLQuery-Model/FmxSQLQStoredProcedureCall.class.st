@@ -3,7 +3,7 @@ I am a call to a stored procedure of the model.
 "
 Class {
 	#name : #FmxSQLQStoredProcedureCall,
-	#superclass : #FamixSQLReference,
+	#superclass : #AnObsoleteFamixSQLReference,
 	#traits : 'FamixTInvocation + FmxSQLQTWithQualifiedReference',
 	#classTraits : 'FamixTInvocation classTrait + FmxSQLQTWithQualifiedReference classTrait',
 	#category : #'FamixSQLQuery-Model-Entities'

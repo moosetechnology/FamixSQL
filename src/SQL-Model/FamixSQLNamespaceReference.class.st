@@ -5,7 +5,7 @@ Class {
 	#name : #FamixSQLNamespaceReference,
 	#superclass : #FamixSQLReference,
 	#instVars : [
-		'#namespace => FMOne type: #FamixSQLSchema opposite: #references'
+		'#namespace => FMOne type: #FamixSQLNamespace opposite: #references'
 	],
 	#category : #'SQL-Model-Entities'
 }
@@ -16,12 +16,12 @@ FamixSQLNamespaceReference class >> annotation [
 	<FMClass: #NamespaceReference super: #FamixSQLReference>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #accessing }
 FamixSQLNamespaceReference >> namespace [
-	"Relation named: #namespace type: #FamixSQLSchema opposite: #references"
+	"Relation named: #namespace type: #FamixSQLNamespace opposite: #references"
 
 	<generated>
 	<target>

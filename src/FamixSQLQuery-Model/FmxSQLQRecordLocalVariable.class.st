@@ -4,8 +4,6 @@ I am local variable of type record. I can contain columns. These columns are set
 Class {
 	#name : #FmxSQLQRecordLocalVariable,
 	#superclass : #FmxSQLQLocalVariable,
-	#traits : 'FamixSQLTColumnsContainer',
-	#classTraits : 'FamixSQLTColumnsContainer classTrait',
 	#instVars : [
 		'#queryBoundTo => FMOne type: #FmxSQLQSelectQuery opposite: #recordLocalVariables'
 	],

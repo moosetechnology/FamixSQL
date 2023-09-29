@@ -3,7 +3,7 @@ TODO
 "
 Class {
 	#name : #FmxSQLQReferencesGroupReference,
-	#superclass : #FamixSQLReference,
+	#superclass : #AnObsoleteFamixSQLReference,
 	#traits : 'FmxSQLQTReferencesGroupReference + TEntityMetaLevelDependency',
 	#classTraits : 'FmxSQLQTReferencesGroupReference classTrait + TEntityMetaLevelDependency classTrait',
 	#category : #'FamixSQLQuery-Model-Entities'

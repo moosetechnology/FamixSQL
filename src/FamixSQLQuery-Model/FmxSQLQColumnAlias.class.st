@@ -4,8 +4,8 @@ I am an alias for a column.
 Class {
 	#name : #FmxSQLQColumnAlias,
 	#superclass : #FmxSQLQAlias,
-	#traits : 'FamixSQLTColumn + FamixSQLTWithColumnReference + FmxSQLQTWithReferencesGroupReference',
-	#classTraits : 'FamixSQLTColumn classTrait + FamixSQLTWithColumnReference classTrait + FmxSQLQTWithReferencesGroupReference classTrait',
+	#traits : 'FmxSQLQTWithReferencesGroupReference',
+	#classTraits : 'FmxSQLQTWithReferencesGroupReference classTrait',
 	#instVars : [
 		'#columnsContainerAlias => FMOne type: #FmxSQLQColumnsContainerAlias opposite: #columnAliases'
 	],

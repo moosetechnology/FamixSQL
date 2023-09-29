@@ -4,8 +4,8 @@ I am a Values clause
 Class {
 	#name : #FmxSQLQValuesClause,
 	#superclass : #FmxSQLQClause,
-	#traits : 'FamixSQLTWithColumnReference + FamixTWithAccesses + FamixTWithInvocations + FmxSQLQTWithDerivedTableReference',
-	#classTraits : 'FamixSQLTWithColumnReference classTrait + FamixTWithAccesses classTrait + FamixTWithInvocations classTrait + FmxSQLQTWithDerivedTableReference classTrait',
+	#traits : 'FamixTWithAccesses + FamixTWithInvocations + FmxSQLQTWithDerivedTableReference',
+	#classTraits : 'FamixTWithAccesses classTrait + FamixTWithInvocations classTrait + FmxSQLQTWithDerivedTableReference classTrait',
 	#category : #'FamixSQLQuery-Model-Entities'
 }
 

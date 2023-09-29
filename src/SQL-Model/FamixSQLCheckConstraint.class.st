@@ -3,15 +3,15 @@ I represent a CHECK constraint as defined in SQL standard.
 "
 Class {
 	#name : #FamixSQLCheckConstraint,
-	#superclass : #FamixSQLEntity,
+	#superclass : #FamixSQLTableConstraint,
 	#category : #'SQL-Model-Entities'
 }
 
 { #category : #meta }
 FamixSQLCheckConstraint class >> annotation [
 
-	<FMClass: #CheckConstraint super: #FamixSQLEntity>
+	<FMClass: #CheckConstraint super: #FamixSQLTableConstraint>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
+	^ self
 ]

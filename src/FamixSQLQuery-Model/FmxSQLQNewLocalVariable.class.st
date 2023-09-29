@@ -4,8 +4,6 @@ I model the special NEW local variable accessible from inside trigger stored pro
 Class {
 	#name : #FmxSQLQNewLocalVariable,
 	#superclass : #FmxSQLQLocalVariable,
-	#traits : 'FamixSQLTColumnsContainer',
-	#classTraits : 'FamixSQLTColumnsContainer classTrait',
 	#category : #'FamixSQLQuery-Model-Entities'
 }
 

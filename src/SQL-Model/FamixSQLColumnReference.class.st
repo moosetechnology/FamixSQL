@@ -5,9 +5,10 @@ Class {
 	#name : #FamixSQLColumnReference,
 	#superclass : #FamixSQLReference,
 	#instVars : [
-		'#source => FMOne type: #FamixSQLTWithColumnReference opposite: #columnReferences',
 		'#column => FMOne type: #FamixSQLColumn opposite: #references',
-		'#foreignKeySource => FMOne type: #FamixSQLForeignKeyConstraint opposite: #foreignKeyColumnReferences'
+		'#foreignKeySource => FMOne type: #FamixSQLForeignKeyConstraint opposite: #foreignKeyColumnReferences',
+		'#isWildCardReference => FMProperty',
+		'#source => FMOne type: #FamixSQLTWithColumnReference opposite: #columnReferences'
 	],
 	#category : #'SQL-Model-Entities'
 }
@@ -18,7 +19,7 @@ FamixSQLColumnReference class >> annotation [
 	<FMClass: #ColumnReference super: #FamixSQLReference>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #accessing }
@@ -51,6 +52,20 @@ FamixSQLColumnReference >> foreignKeySource: anObject [
 
 	<generated>
 	foreignKeySource := anObject
+]
+
+{ #category : #accessing }
+FamixSQLColumnReference >> isWildCardReference [
+
+	<FMProperty: #isWildCardReference type: #Boolean>
+	<generated>
+	^ isWildCardReference
+]
+
+{ #category : #accessing }
+FamixSQLColumnReference >> isWildCardReference: anObject [
+	<generated>
+	isWildCardReference := anObject
 ]
 
 { #category : #accessing }

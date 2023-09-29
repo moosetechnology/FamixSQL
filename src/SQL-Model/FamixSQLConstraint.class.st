@@ -1,10 +1,7 @@
 Class {
 	#name : #FamixSQLConstraint,
 	#superclass : #FamixSQLEntity,
-	#traits : 'FamixSQLTWithColumnReference',
-	#classTraits : 'FamixSQLTWithColumnReference classTrait',
 	#instVars : [
-		'#name => FMProperty',
 		'#table => FMOne type: #FamixSQLTable opposite: #constraints'
 	],
 	#category : #'SQL-Model-Entities'
@@ -16,21 +13,7 @@ FamixSQLConstraint class >> annotation [
 	<FMClass: #Constraint super: #FamixSQLEntity>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
-]
-
-{ #category : #accessing }
-FamixSQLConstraint >> name [
-
-	<FMProperty: #name type: #String>
-	<generated>
-	^ name
-]
-
-{ #category : #accessing }
-FamixSQLConstraint >> name: anObject [
-	<generated>
-	name := anObject
+	^ self
 ]
 
 { #category : #accessing }

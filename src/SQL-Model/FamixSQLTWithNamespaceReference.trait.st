@@ -9,5 +9,5 @@ FamixSQLTWithNamespaceReference classSide >> annotation [
 	<FMClass: #TWithNamespaceReference super: #Object>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
+	^ self
 ]

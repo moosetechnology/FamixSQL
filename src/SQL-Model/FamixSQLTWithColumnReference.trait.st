@@ -12,7 +12,7 @@ FamixSQLTWithColumnReference classSide >> annotation [
 	<FMClass: #TWithColumnReference super: #Object>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #adding }

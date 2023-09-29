@@ -4,8 +4,8 @@ I am a set clause
 Class {
 	#name : #FmxSQLQSetClause,
 	#superclass : #FmxSQLQClause,
-	#traits : 'FamixSQLTWithColumnReference + FamixTWithAccesses + FamixTWithInvocations + FmxSQLQTWithDerivedTableReference',
-	#classTraits : 'FamixSQLTWithColumnReference classTrait + FamixTWithAccesses classTrait + FamixTWithInvocations classTrait + FmxSQLQTWithDerivedTableReference classTrait',
+	#traits : 'FamixTWithAccesses + FamixTWithInvocations + FmxSQLQTWithDerivedTableReference',
+	#classTraits : 'FamixTWithAccesses classTrait + FamixTWithInvocations classTrait + FmxSQLQTWithDerivedTableReference classTrait',
 	#category : #'FamixSQLQuery-Model-Entities'
 }
 

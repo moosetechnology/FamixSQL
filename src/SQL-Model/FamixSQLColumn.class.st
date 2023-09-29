@@ -1,11 +1,11 @@
 Class {
 	#name : #FamixSQLColumn,
-	#superclass : #FamixSQLEntity,
+	#superclass : #FamixSQLStructuralEntity,
 	#traits : 'FamixSQLTColumn',
 	#classTraits : 'FamixSQLTColumn classTrait',
 	#instVars : [
-		'#name => FMProperty',
-		'#references => FMMany type: #FamixSQLColumnReference opposite: #column'
+		'#references => FMMany type: #FamixSQLColumnReference opposite: #column',
+		'#type => FMOne type: #FamixSQLType opposite: #columns'
 	],
 	#category : #'SQL-Model-Entities'
 }
@@ -13,30 +13,16 @@ Class {
 { #category : #meta }
 FamixSQLColumn class >> annotation [
 
-	<FMClass: #Column super: #FamixSQLEntity>
+	<FMClass: #Column super: #FamixSQLStructuralEntity>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #adding }
 FamixSQLColumn >> addReference: anObject [
 	<generated>
 	^ self references add: anObject
-]
-
-{ #category : #accessing }
-FamixSQLColumn >> name [
-
-	<FMProperty: #name type: #String>
-	<generated>
-	^ name
-]
-
-{ #category : #accessing }
-FamixSQLColumn >> name: anObject [
-	<generated>
-	name := anObject
 ]
 
 { #category : #accessing }
@@ -53,4 +39,19 @@ FamixSQLColumn >> references: anObject [
 
 	<generated>
 	references value: anObject
+]
+
+{ #category : #accessing }
+FamixSQLColumn >> type [
+	"Relation named: #type type: #FamixSQLType opposite: #columns"
+
+	<generated>
+	^ type
+]
+
+{ #category : #accessing }
+FamixSQLColumn >> type: anObject [
+
+	<generated>
+	type := anObject
 ]

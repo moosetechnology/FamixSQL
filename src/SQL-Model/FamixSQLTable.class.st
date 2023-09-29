@@ -1,12 +1,11 @@
 Class {
 	#name : #FamixSQLTable,
-	#superclass : #FamixSQLEntity,
-	#traits : 'FamixSQLAbstractType + FamixSQLTColumnsContainer',
-	#classTraits : 'FamixSQLAbstractType classTrait + FamixSQLTColumnsContainer classTrait',
+	#superclass : #FamixSQLStructuralEntity,
+	#traits : 'FamixSQLTAbstractType + FamixSQLTColumnsContainer',
+	#classTraits : 'FamixSQLTAbstractType classTrait + FamixSQLTColumnsContainer classTrait',
 	#instVars : [
-		'#name => FMProperty',
-		'#schema => FMOne type: #FamixSQLSchema opposite: #tables',
-		'#constraints => FMMany type: #FamixSQLConstraint opposite: #table'
+		'#constraints => FMMany type: #FamixSQLConstraint opposite: #table',
+		'#namespace => FMOne type: #FamixSQLNamespace opposite: #tables'
 	],
 	#category : #'SQL-Model-Entities'
 }
@@ -14,10 +13,10 @@ Class {
 { #category : #meta }
 FamixSQLTable class >> annotation [
 
-	<FMClass: #Table super: #FamixSQLEntity>
+	<FMClass: #Table super: #FamixSQLStructuralEntity>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #groups }
@@ -57,30 +56,16 @@ FamixSQLTable >> constraintsGroup [
 ]
 
 { #category : #accessing }
-FamixSQLTable >> name [
+FamixSQLTable >> namespace [
+	"Relation named: #namespace type: #FamixSQLNamespace opposite: #tables"
 
-	<FMProperty: #name type: #String>
 	<generated>
-	^ name
+	^ namespace
 ]
 
 { #category : #accessing }
-FamixSQLTable >> name: anObject [
-	<generated>
-	name := anObject
-]
-
-{ #category : #accessing }
-FamixSQLTable >> schema [
-	"Relation named: #schema type: #FamixSQLSchema opposite: #tables"
+FamixSQLTable >> namespace: anObject [
 
 	<generated>
-	^ schema
-]
-
-{ #category : #accessing }
-FamixSQLTable >> schema: anObject [
-
-	<generated>
-	schema := anObject
+	namespace := anObject
 ]
