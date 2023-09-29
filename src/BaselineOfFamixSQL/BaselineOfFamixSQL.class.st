@@ -22,8 +22,9 @@ BaselineOfFamixSQL >> defineDependencies: spec [
 
 	spec
 		baseline: 'ODBC'
-		with: [ 
-		spec repository: 'github://pharo-rdbms/Pharo-ODBC:master/src' ]
+		with: [
+		spec repository: 'github://pharo-rdbms/Pharo-ODBC:master/src' ].
+	self famix: spec
 ]
 
 { #category : #baselines }
@@ -49,4 +50,18 @@ BaselineOfFamixSQL >> definePackages: spec [
 		with: [ spec requires: #( 'ODBC' 'SQL-Model-Importer' ) ];
 		package: 'SQL-Model-Vizualisation'
 		with: [ spec requires: #( 'SQL-Model' ) ]
+]
+
+{ #category : #baselines }
+BaselineOfFamixSQL >> famix: spec [
+
+	| famixVersion |
+	famixVersion := 'development'.
+	spec
+		for: { 'pharo10.x' }
+		do: [ famixVersion := 'v1.0.6' "Famix version for Moose 10" ].
+		
+	spec baseline: 'Famix' with: [
+		spec repository:
+			('github://moosetechnology/Famix:{1}/src' format: { famixVersion }) ]
 ]
