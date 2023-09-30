@@ -22,7 +22,7 @@ FamixSQLImporterTest >> setUp [
 FamixSQLImporterTest >> testEnsureCreate2SameSchemaIsInModel [
 	importer ensureCreateSchema: 'dbo'.
 	importer ensureCreateSchema: 'dbo'.
-	self assert: (importer model allWithType: FamixSQLSchema) size equals: 1
+	self assert: (importer model allWithType: FamixSQLNamespace) size equals: 1
 ]
 
 { #category : #test }
@@ -50,7 +50,7 @@ FamixSQLImporterTest >> testEnsureCreate2SameTableIsInModel2 [
 FamixSQLImporterTest >> testEnsureCreate2SchemaIsInModel [
 	importer ensureCreateSchema: 'dbo'.
 	importer ensureCreateSchema: 'dbo2'.
-	self assert: (importer model allWithType: FamixSQLSchema) size equals: 2
+	self assert: (importer model allWithType: FamixSQLNamespace) size equals: 2
 ]
 
 { #category : #test }
@@ -66,13 +66,13 @@ FamixSQLImporterTest >> testEnsureCreate2TableIsInModel [
 { #category : #test }
 FamixSQLImporterTest >> testEnsureCreateSchema [
 
-	self assert: (importer ensureCreateSchema: 'dbo' ) class equals: FamixSQLSchema 
+	self assert: (importer ensureCreateSchema: 'dbo' ) class equals: FamixSQLNamespace 
 ]
 
 { #category : #test }
 FamixSQLImporterTest >> testEnsureCreateSchemaIsInModel [
 	importer ensureCreateSchema: 'dbo'.
-	self assert: (importer model allWithType: FamixSQLSchema) size equals: 1
+	self assert: (importer model allWithType: FamixSQLNamespace) size equals: 1
 ]
 
 { #category : #test }

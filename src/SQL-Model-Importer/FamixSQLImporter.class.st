@@ -12,16 +12,24 @@ FamixSQLImporter >> createForeignIfRequired: table for: column basedOn: fkConstr
 
 	| foreignKeyConstraint columnReference |
 	fkColumnName ~= 'NULL' ifFalse: [ ^ nil ].
-	table constraints detect: [ :constraint | constraint name = fkConstraintName ] ifOne: [:constraint | ^constraint ].
+
+	table constraints
+		detect: [ :constraint | constraint name = fkConstraintName ]
+		ifOne: [:constraint | ^constraint ].
+
 	foreignKeyConstraint := FamixSQLForeignKeyConstraint new.
 	foreignKeyConstraint name: fkConstraintName.
+
 	table addConstraint: foreignKeyConstraint.
+
 	columnReference := FamixSQLColumnReference new.
 	columnReference column: column.
 	foreignKeyConstraint addColumnReference: columnReference.
+
 	self model addAll: { 
 			foreignKeyConstraint.
 			columnReference }.
+
 	^ foreignKeyConstraint
 ]
 
@@ -30,13 +38,20 @@ FamixSQLImporter >> createPrimaryIfRequired: table for: column basedOn: pkConstr
 
 	| primaryKeyConstraint columnReference |
 	pkColumnName ~= 'NULL' ifFalse: [ ^ self ].
-	table constraints detect: [ :constraint | constraint name = pkConstraintName ] ifOne: [:constraint | ^constraint ].
+
+	table constraints
+		detect: [ :constraint | constraint name = pkConstraintName ]
+		ifOne: [:constraint | ^constraint ].
+
 	primaryKeyConstraint := FamixSQLPrimaryKeyConstraint new.
 	primaryKeyConstraint name: pkConstraintName.
+
 	table addConstraint: primaryKeyConstraint.
+
 	columnReference := FamixSQLColumnReference new.
 	columnReference column: column.
 	primaryKeyConstraint addColumnReference: columnReference.
+
 	self model addAll: { 
 			primaryKeyConstraint.
 			columnReference }
@@ -59,43 +74,43 @@ FamixSQLImporter >> ensureCreateColumn: columnName for: aFamixSQLTable [
 { #category : #importing }
 FamixSQLImporter >> ensureCreateSchema: schemaName [
 
-	^ model asOrderedCollection
-		  detect: [ :el | 
-		  (el isKindOf: FamixSQLSchema) and: [ el name = schemaName ] ]
-		  ifNone: [ 
-			  | schema |
-			  schema := FamixSQLSchema new.
-			  schema name: schemaName.
-			  self model add: schema.
-			  schema ]
+	^model asOrderedCollection
+		detect: [ :el | 
+			(el isKindOf: FamixSQLNamespace) and: [ el name = schemaName ] ]
+		ifNone: [ | schema |
+			schema := FamixSQLNamespace new.
+			schema name: schemaName.
+			self model add: schema.
+			schema
+		]
 ]
 
 { #category : #importing }
 FamixSQLImporter >> ensureCreateTable: tableName [
 
-	^ model asOrderedCollection
-		  detect: [ :el | 
-		  (el isKindOf: FamixSQLTable) and: [ el name = tableName ] ]
-		  ifNone: [ 
-			  | table |
-			  table := FamixSQLTable new.
-			  table name: tableName.
-			  self model add: table.
-			  table ]
+	^model asOrderedCollection
+		detect: [ :el | 
+			(el isKindOf: FamixSQLTable) and: [ el name = tableName ] ]
+		ifNone: [ | table |
+			table := FamixSQLTable new.
+			table name: tableName.
+			self model add: table.
+			table
+		]
 ]
 
 { #category : #importing }
 FamixSQLImporter >> ensureCreateView: viewName [
 
-	^ model asOrderedCollection
-		  detect: [ :el | 
-		  (el isKindOf: FmxSQLQView) and: [ el name = viewName ] ]
-		  ifNone: [ 
-			  | view |
-			  view := FmxSQLQView new.
-			  view name: viewName.
-			  self model add: view.
-			  view ]
+	^model asOrderedCollection
+		detect: [ :el | 
+			(el isKindOf: FmxSQLQView) and: [ el name = viewName ] ]
+		ifNone: [ | view |
+			view := FmxSQLQView new.
+			view name: viewName.
+			self model add: view.
+			view
+		]
 ]
 
 { #category : #initialization }
