@@ -4,8 +4,7 @@ Class {
 	#traits : 'FamixSQLTColumn',
 	#classTraits : 'FamixSQLTColumn classTrait',
 	#instVars : [
-		'#references => FMMany type: #FamixSQLColumnReference opposite: #column',
-		'#type => FMOne type: #FamixSQLType opposite: #columns'
+		'#type => FMOne type: #FamixSQLType opposite: #column'
 	],
 	#category : #'SQL-Model-Entities'
 }
@@ -19,31 +18,9 @@ FamixSQLColumn class >> annotation [
 	^ self
 ]
 
-{ #category : #adding }
-FamixSQLColumn >> addReference: anObject [
-	<generated>
-	^ self references add: anObject
-]
-
-{ #category : #accessing }
-FamixSQLColumn >> references [
-	"Relation named: #references type: #FamixSQLColumnReference opposite: #column"
-
-	<generated>
-	<derived>
-	^ references
-]
-
-{ #category : #accessing }
-FamixSQLColumn >> references: anObject [
-
-	<generated>
-	references value: anObject
-]
-
 { #category : #accessing }
 FamixSQLColumn >> type [
-	"Relation named: #type type: #FamixSQLType opposite: #columns"
+	"Relation named: #type type: #FamixSQLType opposite: #column"
 
 	<generated>
 	^ type

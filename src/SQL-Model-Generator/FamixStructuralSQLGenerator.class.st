@@ -9,25 +9,21 @@ Class {
 		'foreigneKeyConstraint',
 		'columnReference',
 		'checkConstraint',
-		'tWithTableReference',
-		'tWithNamespaceReference',
-		'reference',
-		'tableReference',
 		'tAbstractType',
 		'tColumnsContainer',
 		'tColumn',
-		'namespaceReference',
 		'structuralEntity',
 		'type',
 		'notNullConstraint',
 		'uniqueConstraint',
-		'typeReference',
 		'tQueryContainer',
 		'tWithColumnReference',
 		'namespace',
 		'tableConstraint',
 		'columnConstraint',
-		'defaultConstraint'
+		'defaultConstraint',
+		'tQuery',
+		'tColumnReference'
 	],
 	#category : #'SQL-Model-Generator'
 }
@@ -79,52 +75,12 @@ FamixStructuralSQLGenerator >> defaultConstraintComment [
 FamixStructuralSQLGenerator >> defineClassRelations [
 
 	"Structural entities"
-	namespace -* table.
-	(tColumnsContainer property: #columns)
-		<>-* (tColumn property: #columnsContainer).
-	column *- type.
-	(table property: #constraints)
-		<>-* (tableConstraint property: #table).
+	namespace <>-* (table property: #parentNamespace).
 
-	"References"
-	(tWithColumnReference property: #columnReferences) target
-		-* (columnReference property: #source) source.
-	
-	columnReference target *- (column property: #references).
+	column - type.
 
-	"Constraints"
-	(foreigneKeyConstraint property: #foreignKeyColumnReferences) target
-		-* (columnReference property: #foreignKeySource) source.
-	(table property: #constraints)
-		<>-* (constraint property: #table).
-	(namespaceReference property: #namespace) target
-		*- (namespace property: #references)
-]
+	(table property: #constraints) -* tableConstraint.
 
-{ #category : #definition }
-FamixStructuralSQLGenerator >> defineClassTraits [
-
-	"Structural entities"
-	namespace -* table.
-	(tColumnsContainer property: #columns)
-		<>-* (tColumn property: #columnsContainer).
-	column *- type.
-	(table property: #constraints)
-		<>-* (tableConstraint property: #table).
-
-	"References"
-	(tWithColumnReference property: #columnReferences) target
-		-* (columnReference property: #source) source.
-	
-	columnReference target *- (column property: #references).
-
-	"Constraints"
-	(foreigneKeyConstraint property: #foreignKeyColumnReferences) target
-		-* (columnReference property: #foreignKeySource) source.
-	(table property: #constraints)
-		<>-* (constraint property: #table).
-	(namespaceReference property: #namespace) target
-		*- (namespace property: #references)
 ]
 
 { #category : #definition }
@@ -152,12 +108,7 @@ FamixStructuralSQLGenerator >> defineClasses [
 	uniqueConstraint := builder newClassNamed: #UniqueConstraint comment: self uniqueConstraintComment.
 
 	"References"
-	reference := builder newClassNamed: #Reference comment: self referenceComment.
 	columnReference := builder newClassNamed: #ColumnReference comment: self columnReferenceComment.
-	namespaceReference := builder newClassNamed: #NamespaceReference comment: self namespaceReferenceComment.
-	tableReference := builder newClassNamed: #TableReference comment: self tableReferenceComment.
-	typeReference := builder newClassNamed: #TypeReference comment: self typeReferenceComment.
-
 ]
 
 { #category : #definition }
@@ -178,17 +129,14 @@ FamixStructuralSQLGenerator >> defineHierarchy [
 	column --|> tColumn.
 	
 	type --|> structuralEntity.
-	type --|> tAbstractType.
 
 	"Reference"
-	reference --|> #TAssociation.
-	"reference --|> #TArgument."
-	columnReference --|> reference.
-	namespaceReference --|> reference.
-	tableReference --|> reference.
-	typeReference --|> reference.
+	columnReference --|> tColumnReference.
+	tColumnReference --|> #TAssociation.
 
 	"Constraint"
+	constraint --|> structuralEntity.
+	constraint --|> tWithColumnReference.
 	columnConstraint --|> constraint.
 	columnConstraint --|> tWithColumnReference.
 	checkConstraint --|> tableConstraint.
@@ -225,13 +173,31 @@ FamixStructuralSQLGenerator >> defineTraits [
 
 	super defineTraits.
 
-	tAbstractType := builder newTraitNamed: #TAbstractType.
 	tColumn := builder newTraitNamed: #TColumn.
 	tColumnsContainer := builder newTraitNamed: #TColumnsContainer comment: self columnsContainerComment.
+	tColumnReference := builder newTraitNamed: #TColumnReference.
 	tWithColumnReference := builder newTraitNamed: #TWithColumnReference.
-	tWithNamespaceReference := builder newTraitNamed: #TWithNamespaceReference.
+	tQuery := builder newTraitNamed: #TQuery comment: self queryComment.
 	tQueryContainer := builder newTraitNamed: #TQueryContainer comment: self queryContainerComment.
-	tWithTableReference := builder newTraitNamed: #TWithTableReference.
+]
+
+{ #category : #definition }
+FamixStructuralSQLGenerator >> defineTraitsRelations [
+
+	(tColumnsContainer property: #columns)
+		<>-* (tColumn property: #columnsContainer).
+
+	(tColumnReference property: #referencer)
+		source
+		*- (tWithColumnReference property: #columnReferences).
+
+	(tColumnReference property: #column)
+		target
+		*- (tColumn property: #incomingReferences).
+
+	(tQueryContainer property: #queries)
+		<>-* (tQuery property: #containerEntity).
+
 ]
 
 { #category : #comments }
@@ -247,6 +213,11 @@ FamixStructuralSQLGenerator >> namespaceReferenceComment [
 { #category : #comments }
 FamixStructuralSQLGenerator >> nullConstraintComment [
 	^ 'I represent a NOT NULL constraint as defined in SQL standard.'
+]
+
+{ #category : #comments }
+FamixStructuralSQLGenerator >> queryComment [
+	^ 'I represent a CRUD query'
 ]
 
 { #category : #comments }

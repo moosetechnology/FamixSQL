@@ -1,11 +1,11 @@
 Class {
 	#name : #FamixSQLTable,
 	#superclass : #FamixSQLStructuralEntity,
-	#traits : 'FamixSQLTAbstractType + FamixSQLTColumnsContainer',
-	#classTraits : 'FamixSQLTAbstractType classTrait + FamixSQLTColumnsContainer classTrait',
+	#traits : 'FamixSQLTColumnsContainer',
+	#classTraits : 'FamixSQLTColumnsContainer classTrait',
 	#instVars : [
-		'#constraints => FMMany type: #FamixSQLConstraint opposite: #table',
-		'#namespace => FMOne type: #FamixSQLNamespace opposite: #tables'
+		'#constraints => FMMany type: #FamixSQLTableConstraint opposite: #table',
+		'#parentNamespace => FMOne type: #FamixSQLNamespace opposite: #table'
 	],
 	#category : #'SQL-Model-Entities'
 }
@@ -34,7 +34,7 @@ FamixSQLTable >> addConstraint: anObject [
 
 { #category : #accessing }
 FamixSQLTable >> constraints [
-	"Relation named: #constraints type: #FamixSQLConstraint opposite: #table"
+	"Relation named: #constraints type: #FamixSQLTableConstraint opposite: #table"
 
 	<generated>
 	<derived>
@@ -48,24 +48,25 @@ FamixSQLTable >> constraints: anObject [
 	constraints value: anObject
 ]
 
+{ #category : #accessing }
+FamixSQLTable >> parentNamespace [
+	"Relation named: #parentNamespace type: #FamixSQLNamespace opposite: #table"
+
+	<generated>
+	<container>
+	^ parentNamespace
+]
+
+{ #category : #accessing }
+FamixSQLTable >> parentNamespace: anObject [
+
+	<generated>
+	parentNamespace := anObject
+]
+
 { #category : #navigation }
-FamixSQLTable >> constraintsGroup [
+FamixSQLTable >> parentNamespaceGroup [
 	<generated>
-	<navigation: 'Constraints'>
-	^ MooseSpecializedGroup withAll: self constraints asSet
-]
-
-{ #category : #accessing }
-FamixSQLTable >> namespace [
-	"Relation named: #namespace type: #FamixSQLNamespace opposite: #tables"
-
-	<generated>
-	^ namespace
-]
-
-{ #category : #accessing }
-FamixSQLTable >> namespace: anObject [
-
-	<generated>
-	namespace := anObject
+	<navigation: 'ParentNamespace'>
+	^ MooseSpecializedGroup with: self parentNamespace
 ]

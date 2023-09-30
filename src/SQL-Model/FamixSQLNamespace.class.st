@@ -7,8 +7,7 @@ Class {
 	#traits : 'FamixTNamespace',
 	#classTraits : 'FamixTNamespace classTrait',
 	#instVars : [
-		'#references => FMMany type: #FamixSQLNamespaceReference opposite: #namespace',
-		'#tables => FMMany type: #FamixSQLTable opposite: #namespace'
+		'#table => FMMany type: #FamixSQLTable opposite: #parentNamespace'
 	],
 	#category : #'SQL-Model-Entities'
 }
@@ -23,45 +22,30 @@ FamixSQLNamespace class >> annotation [
 ]
 
 { #category : #adding }
-FamixSQLNamespace >> addReference: anObject [
-	<generated>
-	^ self references add: anObject
-]
-
-{ #category : #adding }
 FamixSQLNamespace >> addTable: anObject [
 	<generated>
-	^ self tables add: anObject
+	^ self table add: anObject
 ]
 
 { #category : #accessing }
-FamixSQLNamespace >> references [
-	"Relation named: #references type: #FamixSQLNamespaceReference opposite: #namespace"
+FamixSQLNamespace >> table [
+	"Relation named: #table type: #FamixSQLTable opposite: #parentNamespace"
 
 	<generated>
 	<derived>
-	^ references
+	^ table
 ]
 
 { #category : #accessing }
-FamixSQLNamespace >> references: anObject [
+FamixSQLNamespace >> table: anObject [
 
 	<generated>
-	references value: anObject
+	table value: anObject
 ]
 
-{ #category : #accessing }
-FamixSQLNamespace >> tables [
-	"Relation named: #tables type: #FamixSQLTable opposite: #namespace"
-
+{ #category : #navigation }
+FamixSQLNamespace >> tableGroup [
 	<generated>
-	<derived>
-	^ tables
-]
-
-{ #category : #accessing }
-FamixSQLNamespace >> tables: anObject [
-
-	<generated>
-	tables value: anObject
+	<navigation: 'Table'>
+	^ MooseSpecializedGroup withAll: self table asSet
 ]

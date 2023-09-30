@@ -3,12 +3,11 @@ I am reference to a column in a table of the model.
 "
 Class {
 	#name : #FamixSQLColumnReference,
-	#superclass : #FamixSQLReference,
+	#superclass : #FamixSQLEntity,
+	#traits : 'FamixSQLTColumnReference',
+	#classTraits : 'FamixSQLTColumnReference classTrait',
 	#instVars : [
-		'#column => FMOne type: #FamixSQLColumn opposite: #references',
-		'#foreignKeySource => FMOne type: #FamixSQLForeignKeyConstraint opposite: #foreignKeyColumnReferences',
-		'#isWildCardReference => FMProperty',
-		'#source => FMOne type: #FamixSQLTWithColumnReference opposite: #columnReferences'
+		'#isWildCardReference => FMProperty'
 	],
 	#category : #'SQL-Model-Entities'
 }
@@ -16,42 +15,10 @@ Class {
 { #category : #meta }
 FamixSQLColumnReference class >> annotation [
 
-	<FMClass: #ColumnReference super: #FamixSQLReference>
+	<FMClass: #ColumnReference super: #FamixSQLEntity>
 	<package: #'SQL-Model'>
 	<generated>
 	^ self
-]
-
-{ #category : #accessing }
-FamixSQLColumnReference >> column [
-	"Relation named: #column type: #FamixSQLColumn opposite: #references"
-
-	<generated>
-	<target>
-	^ column
-]
-
-{ #category : #accessing }
-FamixSQLColumnReference >> column: anObject [
-
-	<generated>
-	column := anObject
-]
-
-{ #category : #accessing }
-FamixSQLColumnReference >> foreignKeySource [
-	"Relation named: #foreignKeySource type: #FamixSQLForeignKeyConstraint opposite: #foreignKeyColumnReferences"
-
-	<generated>
-	<source>
-	^ foreignKeySource
-]
-
-{ #category : #accessing }
-FamixSQLColumnReference >> foreignKeySource: anObject [
-
-	<generated>
-	foreignKeySource := anObject
 ]
 
 { #category : #accessing }
@@ -66,20 +33,4 @@ FamixSQLColumnReference >> isWildCardReference [
 FamixSQLColumnReference >> isWildCardReference: anObject [
 	<generated>
 	isWildCardReference := anObject
-]
-
-{ #category : #accessing }
-FamixSQLColumnReference >> source [
-	"Relation named: #source type: #FamixSQLTWithColumnReference opposite: #columnReferences"
-
-	<generated>
-	<source>
-	^ source
-]
-
-{ #category : #accessing }
-FamixSQLColumnReference >> source: anObject [
-
-	<generated>
-	source := anObject
 ]

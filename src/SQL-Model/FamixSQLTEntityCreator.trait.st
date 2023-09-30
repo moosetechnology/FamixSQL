@@ -80,13 +80,6 @@ FamixSQLTEntityCreator >> newNamespaceNamed: aName [
 ]
 
 { #category : #'entity creation' }
-FamixSQLTEntityCreator >> newNamespaceReference [
-
-	<generated>
-	^ self add: FamixSQLNamespaceReference new
-]
-
-{ #category : #'entity creation' }
 FamixSQLTEntityCreator >> newNotNullConstraint [
 
 	<generated>
@@ -98,13 +91,6 @@ FamixSQLTEntityCreator >> newPrimaryKeyConstraint [
 
 	<generated>
 	^ self add: FamixSQLPrimaryKeyConstraint new
-]
-
-{ #category : #'entity creation' }
-FamixSQLTEntityCreator >> newReference [
-
-	<generated>
-	^ self add: FamixSQLReference new
 ]
 
 { #category : #'entity creation' }
@@ -136,24 +122,10 @@ FamixSQLTEntityCreator >> newTableConstraint [
 ]
 
 { #category : #'entity creation' }
-FamixSQLTEntityCreator >> newTableReference [
-
-	<generated>
-	^ self add: FamixSQLTableReference new
-]
-
-{ #category : #'entity creation' }
 FamixSQLTEntityCreator >> newType [
 
 	<generated>
 	^ self add: FamixSQLType new
-]
-
-{ #category : #'entity creation' }
-FamixSQLTEntityCreator >> newTypeReference [
-
-	<generated>
-	^ self add: FamixSQLTypeReference new
 ]
 
 { #category : #'entity creation' }

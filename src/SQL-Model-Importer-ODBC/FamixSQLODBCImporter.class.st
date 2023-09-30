@@ -57,7 +57,7 @@ FamixSQLODBCImporter >> buildForeignKey: foreignKey for: table [
 
 	columnReference := FamixSQLColumnReference new.
 	columnReference column: targetColumn.
-	^ sqlForeignKey addForeignKeyColumnReference: columnReference
+	^ sqlForeignKey addColumnReference: columnReference
 ]
 
 { #category : #querying }
@@ -77,7 +77,7 @@ FamixSQLODBCImporter >> columns: aTableName [
 FamixSQLODBCImporter >> import [
 
 	self importTables.
-	self importViews.
+	"self importViews."
 
 	^ self model
 ]

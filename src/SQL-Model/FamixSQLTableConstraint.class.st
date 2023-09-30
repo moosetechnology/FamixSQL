@@ -4,6 +4,9 @@ I am an abstract class for constraints on Tables
 Class {
 	#name : #FamixSQLTableConstraint,
 	#superclass : #FamixSQLConstraint,
+	#instVars : [
+		'#table => FMOne type: #FamixSQLTable opposite: #constraints'
+	],
 	#category : #'SQL-Model-Entities'
 }
 
@@ -14,4 +17,19 @@ FamixSQLTableConstraint class >> annotation [
 	<package: #'SQL-Model'>
 	<generated>
 	^ self
+]
+
+{ #category : #accessing }
+FamixSQLTableConstraint >> table [
+	"Relation named: #table type: #FamixSQLTable opposite: #constraints"
+
+	<generated>
+	^ table
+]
+
+{ #category : #accessing }
+FamixSQLTableConstraint >> table: anObject [
+
+	<generated>
+	table := anObject
 ]
