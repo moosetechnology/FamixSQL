@@ -1,11 +1,8 @@
 Class {
 	#name : #FamixSQLColumn,
 	#superclass : #FamixSQLStructuralEntity,
-	#traits : 'FamixSQLTColumn',
-	#classTraits : 'FamixSQLTColumn classTrait',
-	#instVars : [
-		'#type => FMOne type: #FamixSQLType opposite: #column'
-	],
+	#traits : 'FamixSQLTColumn + FamixSQLTWithTypeReference',
+	#classTraits : 'FamixSQLTColumn classTrait + FamixSQLTWithTypeReference classTrait',
 	#category : #'SQL-Model-Entities'
 }
 
@@ -16,19 +13,4 @@ FamixSQLColumn class >> annotation [
 	<package: #'SQL-Model'>
 	<generated>
 	^ self
-]
-
-{ #category : #accessing }
-FamixSQLColumn >> type [
-	"Relation named: #type type: #FamixSQLType opposite: #column"
-
-	<generated>
-	^ type
-]
-
-{ #category : #accessing }
-FamixSQLColumn >> type: anObject [
-
-	<generated>
-	type := anObject
 ]

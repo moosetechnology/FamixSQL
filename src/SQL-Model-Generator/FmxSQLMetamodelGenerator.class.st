@@ -98,7 +98,7 @@ FmxSQLMetamodelGenerator class >> prefix [
 { #category : #accessing }
 FmxSQLMetamodelGenerator class >> submetamodels [
 
-	^ { FamixStructuralSQLGenerator }
+	^ { FamixSQLStructuralGenerator }
 ]
 
 { #category : #'comments - SQL' }

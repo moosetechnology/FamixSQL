@@ -1,7 +1,7 @@
 Trait {
 	#name : #FamixSQLTColumn,
 	#instVars : [
-		'#columnsContainer => FMOne type: #FamixSQLTColumnsContainer opposite: #columns',
+		'#columnsContainer => FMOne type: #FamixSQLTColumnContainer opposite: #columns',
 		'#incomingReferences => FMMany type: #FamixSQLTColumnReference opposite: #column'
 	],
 	#category : #'SQL-Model-Traits'
@@ -24,7 +24,7 @@ FamixSQLTColumn >> addIncomingReference: anObject [
 
 { #category : #accessing }
 FamixSQLTColumn >> columnsContainer [
-	"Relation named: #columnsContainer type: #FamixSQLTColumnsContainer opposite: #columns"
+	"Relation named: #columnsContainer type: #FamixSQLTColumnContainer opposite: #columns"
 
 	<generated>
 	<container>

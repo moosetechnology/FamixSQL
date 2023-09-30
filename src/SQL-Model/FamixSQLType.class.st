@@ -4,9 +4,8 @@ I represent a Type in the database. I can be used for a column, a local variable
 Class {
 	#name : #FamixSQLType,
 	#superclass : #FamixSQLStructuralEntity,
-	#instVars : [
-		'#column => FMOne type: #FamixSQLColumn opposite: #type'
-	],
+	#traits : 'FamixSQLTType',
+	#classTraits : 'FamixSQLTType classTrait',
 	#category : #'SQL-Model-Entities'
 }
 
@@ -17,20 +16,4 @@ FamixSQLType class >> annotation [
 	<package: #'SQL-Model'>
 	<generated>
 	^ self
-]
-
-{ #category : #accessing }
-FamixSQLType >> column [
-	"Relation named: #column type: #FamixSQLColumn opposite: #type"
-
-	<generated>
-	<derived>
-	^ column
-]
-
-{ #category : #accessing }
-FamixSQLType >> column: anObject [
-
-	<generated>
-	column := anObject
 ]

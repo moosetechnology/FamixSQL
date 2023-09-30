@@ -129,6 +129,13 @@ FamixSQLTEntityCreator >> newType [
 ]
 
 { #category : #'entity creation' }
+FamixSQLTEntityCreator >> newTypeReference [
+
+	<generated>
+	^ self add: FamixSQLTypeReference new
+]
+
+{ #category : #'entity creation' }
 FamixSQLTEntityCreator >> newUniqueConstraint [
 
 	<generated>

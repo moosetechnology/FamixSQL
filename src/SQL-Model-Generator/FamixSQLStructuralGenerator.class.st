@@ -1,5 +1,5 @@
 Class {
-	#name : #FamixStructuralSQLGenerator,
+	#name : #FamixSQLStructuralGenerator,
 	#superclass : #FamixMetamodelGenerator,
 	#instVars : [
 		'table',
@@ -9,82 +9,83 @@ Class {
 		'foreigneKeyConstraint',
 		'columnReference',
 		'checkConstraint',
-		'tAbstractType',
-		'tColumnsContainer',
 		'tColumn',
 		'structuralEntity',
 		'type',
 		'notNullConstraint',
 		'uniqueConstraint',
-		'tQueryContainer',
 		'tWithColumnReference',
 		'namespace',
 		'tableConstraint',
 		'columnConstraint',
 		'defaultConstraint',
-		'tQuery',
-		'tColumnReference'
+		'tColumnReference',
+		'tWithTypeReference',
+		'tType',
+		'tTypeReference',
+		'typeReference',
+		'tWithColumnContainerReference',
+		'tColumnContainer',
+		'tColumnContainerReference'
 	],
 	#category : #'SQL-Model-Generator'
 }
 
 { #category : #accessing }
-FamixStructuralSQLGenerator class >> packageName [
+FamixSQLStructuralGenerator class >> packageName [
 
     ^ #'SQL-Model'
 ]
 
 { #category : #accessing }
-FamixStructuralSQLGenerator class >> prefix [
+FamixSQLStructuralGenerator class >> prefix [
 	
 	^ #'FamixSQL'
 ]
 
 { #category : #accessing }
-FamixStructuralSQLGenerator class >> submetamodels [
+FamixSQLStructuralGenerator class >> submetamodels [
 
 	^ { FamixGenerator }
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> checkConstraintComment [
+FamixSQLStructuralGenerator >> checkConstraintComment [
 	^ 'I represent a CHECK constraint as defined in SQL standard.'
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> columnConstraintComment [
+FamixSQLStructuralGenerator >> columnConstraintComment [
 	^ 'I am an abstract class for constraints on Columns'
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> columnReferenceComment [
+FamixSQLStructuralGenerator >> columnReferenceComment [
 	^ 'I am reference to a column in a table of the model.'
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> columnsContainerComment [
+FamixSQLStructuralGenerator >> columnsContainerComment [
 	^ 'I am an abstract super class for entities that contain columns. Two of my well-known subclasses are the table and the view.'
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> defaultConstraintComment [
+FamixSQLStructuralGenerator >> defaultConstraintComment [
 	^ 'I represent a DEFAULT constraint on a column'
 ]
 
 { #category : #definition }
-FamixStructuralSQLGenerator >> defineClassRelations [
+FamixSQLStructuralGenerator >> defineClassRelations [
 
 	"Structural entities"
 	namespace <>-* (table property: #parentNamespace).
-
-	column - type.
 
 	(table property: #constraints) -* tableConstraint.
 
 ]
 
 { #category : #definition }
-FamixStructuralSQLGenerator >> defineClasses [
+FamixSQLStructuralGenerator >> defineClasses [
 
 	super defineClasses.
 
@@ -109,30 +110,37 @@ FamixStructuralSQLGenerator >> defineClasses [
 
 	"References"
 	columnReference := builder newClassNamed: #ColumnReference comment: self columnReferenceComment.
+	typeReference := builder newClassNamed: #TypeReference comment: self typeReferenceComment. 
 ]
 
 { #category : #definition }
-FamixStructuralSQLGenerator >> defineHierarchy [
+FamixSQLStructuralGenerator >> defineHierarchy [
 
 	super defineHierarchy.
 
 	"Structural entities"
 	structuralEntity --|> #TNamedEntity.
+	structuralEntity --|> #TEntityMetaLevelDependency.
+
 	column --|> tColumn.
 	namespace --|> structuralEntity.
 	namespace --|> #TNamespace.
 	"table --|> tAbstractType."
-	table --|> tColumnsContainer.
+	table --|> tColumnContainer.
 	table --|> structuralEntity.
 	
 	column --|> structuralEntity.
 	column --|> tColumn.
+	column --|> tWithTypeReference.
 	
 	type --|> structuralEntity.
+	type --|> tType.
 
 	"Reference"
 	columnReference --|> tColumnReference.
 	tColumnReference --|> #TAssociation.
+	typeReference --|> #TAssociation.
+	typeReference --|> tTypeReference.
 
 	"Constraint"
 	constraint --|> structuralEntity.
@@ -145,13 +153,12 @@ FamixStructuralSQLGenerator >> defineHierarchy [
 	notNullConstraint --|> columnConstraint.
 	primaryKeyConstraint --|> tableConstraint.
 	tableConstraint --|> constraint.
-	"tableConstraint --|> tWithColumnReference."
 	uniqueConstraint --|> tableConstraint.
 
 ]
 
 { #category : #definition }
-FamixStructuralSQLGenerator >> defineProperties [
+FamixSQLStructuralGenerator >> defineProperties [
 
 	super defineProperties.
 
@@ -159,7 +166,7 @@ FamixStructuralSQLGenerator >> defineProperties [
 ]
 
 { #category : #definition }
-FamixStructuralSQLGenerator >> defineRelations [
+FamixSQLStructuralGenerator >> defineRelations [
 
 	super defineRelations.
 
@@ -169,23 +176,24 @@ FamixStructuralSQLGenerator >> defineRelations [
 ]
 
 { #category : #definition }
-FamixStructuralSQLGenerator >> defineTraits [
+FamixSQLStructuralGenerator >> defineTraits [
 
 	super defineTraits.
 
 	tColumn := builder newTraitNamed: #TColumn.
-	tColumnsContainer := builder newTraitNamed: #TColumnsContainer comment: self columnsContainerComment.
 	tColumnReference := builder newTraitNamed: #TColumnReference.
 	tWithColumnReference := builder newTraitNamed: #TWithColumnReference.
-	tQuery := builder newTraitNamed: #TQuery comment: self queryComment.
-	tQueryContainer := builder newTraitNamed: #TQueryContainer comment: self queryContainerComment.
+	tColumnContainer := builder newTraitNamed: #TColumnContainer comment: self columnsContainerComment.
+	tColumnContainerReference := builder newTraitNamed: #TColumnContainerReference.
+	tWithColumnContainerReference := builder newTraitNamed: #TWithColumnContainerReference.
+
+	tType := builder newTraitNamed: #TType.
+	tTypeReference := builder newTraitNamed: #TTypeReference. 
+	tWithTypeReference := builder newTraitNamed: #TWithTypeReference.
 ]
 
 { #category : #definition }
-FamixStructuralSQLGenerator >> defineTraitsRelations [
-
-	(tColumnsContainer property: #columns)
-		<>-* (tColumn property: #columnsContainer).
+FamixSQLStructuralGenerator >> defineTraitsRelations [
 
 	(tColumnReference property: #referencer)
 		source
@@ -195,67 +203,83 @@ FamixStructuralSQLGenerator >> defineTraitsRelations [
 		target
 		*- (tColumn property: #incomingReferences).
 
-	(tQueryContainer property: #queries)
-		<>-* (tQuery property: #containerEntity).
+	(tColumnContainer property: #columns)
+		<>-* (tColumn property: #columnsContainer).
+
+	(tColumnContainerReference property: #referencer)
+		source
+		*- (tWithColumnContainerReference property: #references).
+
+	(tColumnContainerReference property: #columnContainer)
+		target
+		*- (tColumnContainer property: #incomingReferences).
+
+	(tTypeReference property: #referencer)
+		source
+		*- (tWithTypeReference property: #typeReferences).
+
+	(tTypeReference property: #type)
+		target
+		*- (tType property: #incomingReferences).
 
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> namespaceComment [
+FamixSQLStructuralGenerator >> namespaceComment [
 	^ 'I am a namespace. I hold entities to define a name scope where name duplicates are forbidden.'
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> namespaceReferenceComment [
+FamixSQLStructuralGenerator >> namespaceReferenceComment [
 	^ 'I model a reference made to a namespace from source code.'
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> nullConstraintComment [
+FamixSQLStructuralGenerator >> nullConstraintComment [
 	^ 'I represent a NOT NULL constraint as defined in SQL standard.'
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> queryComment [
+FamixSQLStructuralGenerator >> queryComment [
 	^ 'I represent a CRUD query'
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> queryContainerComment [
+FamixSQLStructuralGenerator >> queryContainerComment [
 	^ 'I am an abstract super class for behavioural entities that can contain queries in their source code.'
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> referenceComment [
+FamixSQLStructuralGenerator >> referenceComment [
 	^ 'I am an abstract object that represent a reference made to another entity in the source code a behavioural entity.'
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> structuralEntityComment [
+FamixSQLStructuralGenerator >> structuralEntityComment [
 	^ 'I am an abstract superclass for structural entities. A structural entity is an entity that defines how data are structured by the database.'
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> tableConstraintComment [
+FamixSQLStructuralGenerator >> tableConstraintComment [
 	^ 'I am an abstract class for constraints on Tables'
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> tableReferenceComment [
+FamixSQLStructuralGenerator >> tableReferenceComment [
 	^ 'I am a reference to a table.'
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> typeComment [
+FamixSQLStructuralGenerator >> typeComment [
 	^ 'I represent a Type in the database. I can be used for a column, a local variable, a parameter, etc...'
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> typeReferenceComment [
+FamixSQLStructuralGenerator >> typeReferenceComment [
 	^ 'I am reference to a type of the model.'
 ]
 
 { #category : #comments }
-FamixStructuralSQLGenerator >> uniqueConstraintComment [
+FamixSQLStructuralGenerator >> uniqueConstraintComment [
 	^ 'I represent a UNIQUE constraint as defined in SQL standard.'
 ]

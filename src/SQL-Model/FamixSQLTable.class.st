@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixSQLTable,
 	#superclass : #FamixSQLStructuralEntity,
-	#traits : 'FamixSQLTColumnsContainer',
-	#classTraits : 'FamixSQLTColumnsContainer classTrait',
+	#traits : 'FamixSQLTColumnContainer',
+	#classTraits : 'FamixSQLTColumnContainer classTrait',
 	#instVars : [
 		'#constraints => FMMany type: #FamixSQLTableConstraint opposite: #table',
 		'#parentNamespace => FMOne type: #FamixSQLNamespace opposite: #table'
