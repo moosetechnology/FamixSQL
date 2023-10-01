@@ -2,7 +2,6 @@ Class {
 	#name : #FamixSQLGenerator,
 	#superclass : #FamixSQLStructuralGenerator,
 	#instVars : [
-		'behaviouralEntity',
 		'derivedTable',
 		'localVariable',
 		'parameter',
@@ -38,22 +37,24 @@ Class {
 		'insertQuery',
 		'selectQuery',
 		'updateQuery',
-		'valuesQuery'
+		'valuesQuery',
+		'sqlBehaviouralEntity',
+		'columnContainerReference'
 	],
 	#category : #'SQL-Model-Generator'
 }
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> clauseComment [
 	^ 'I am an abstract class for all clauses in queries (FROM/WHERE/GROUPBY/HAVING/...'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> conflictClauseComment [
 	^ 'I am a ON CONFLICT clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> crudQueryComment [
 	^ 'I am an abstract superclass for Create Read Update Delete (CRUD) queries.
 
@@ -69,13 +70,24 @@ My subclasses represent these four queries.'
 ]
 
 { #category : #definition }
+FamixSQLGenerator >> defineClassRelations [
+
+	super defineClassRelations.
+
+	(trigger property: #storedProcedure)
+		*- triggerStoredProcedure
+]
+
+{ #category : #definition }
 FamixSQLGenerator >> defineClasses [
 
 	super defineClasses.
 
 	"Behavioural"
 
-	behaviouralEntity := builder newTraitNamed: #BehaviouralEntity.
+	sqlBehaviouralEntity := builder newClassNamed: #BehaviouralEntity.
+
+	columnContainerReference := builder newClassNamed: #ColumnContainerReference.
 	derivedTable := builder newClassNamed: #DerivedTable comment: self derivedTableComment.
 	localVariable := builder newClassNamed: #LocalVariable comment: self localVariableComment.
 	newLocalVariable := builder newClassNamed: #NewLocalVariable comment: self newLocalVariableComment.
@@ -128,28 +140,32 @@ FamixSQLGenerator >> defineHierarchy [
 
 	"Behavioural entities"
 
-	behaviouralEntity --|> #TEntityMetaLevelDependency.
+	sqlBehaviouralEntity --|> #TEntityMetaLevelDependency.
+	sqlBehaviouralEntity --|> #TNamedEntity.  "actually CRUD-Queries should not be named"
 
-	"Queries"
-	behaviouralEntity --|> #TEntityMetaLevelDependency.
+	columnContainerReference --|> tColumnContainerReference.
 
-	crudQuery --|> #TWithSourceAnchor.
-	crudQuery --|> #TDependencyQueries.
-
-	view --|> behaviouralEntity.
-	view --|> tColumnContainer.
-	view --|> tQueryContainer.
-	view --|> #TNamespaceEntity.
-	view --|> #TWithImmediateSource.
-	"view --|> tAbstractType."
-	
-	derivedTable --|> behaviouralEntity.
+	derivedTable --|> sqlBehaviouralEntity.
 	derivedTable --|> tColumnContainer.
 	derivedTable --|> tQueryContainer.
-	
-	storedProcedure --|> behaviouralEntity.
+
+	localVariable --|> #TLocalVariable.
+	localVariable --|> #TAccessible.
+	localVariable --|> tWithTypeReference.
+
+	newLocalVariable --|> localVariable.
+	newLocalVariable --|> tColumnContainer.
+
+	oldLocalVariable --|> localVariable.
+	oldLocalVariable --|> tColumnContainer.
+
+	parameter --|> #TParameter.
+	parameter --|> #TAccessible.
+	parameter --|> tWithTypeReference.
+
+	storedProcedure --|> sqlBehaviouralEntity.
 	storedProcedure --|> tQueryContainer.
-	storedProcedure--|> #TNamespaceEntity.
+	storedProcedure--|> #TNamespace.
 	storedProcedure --|> #TWithReferences.
 	storedProcedure --|> #TInvocable.
 	storedProcedure --|> #TWithInvocations.
@@ -158,77 +174,57 @@ FamixSQLGenerator >> defineHierarchy [
 	storedProcedure --|> #TWithAccesses.
 	storedProcedure --|> tWithColumnContainerReference.
 	storedProcedure --|> tWithColumnReference. "For COPY TYPE feature of Postgres."
+	storedProcedure --|> tWithTypeReference.
 	"storedProcedure --|> tWithAlias.
 	storedProcedure --|> tWithCursor.
 	storedProcedure --|> tWithCursorReference.
 	storedProcedure --|> tWithNamespaceReference".
-	
+
 	triggerStoredProcedure --|> storedProcedure.
-	
-	trigger --|> behaviouralEntity.
-	trigger --|> #TNamespaceEntity.
-	
-	selectQuery --|> crudQuery.
-	"selectQuery --|> tDefiningDerivedTables."
-	insertQuery --|> crudQuery.
-	"insertQuery --|> tDefiningDerivedTables."
-	updateQuery --|> crudQuery.
-	"updateQuery --|> tDefiningDerivedTables."
+
+	trigger --|> sqlBehaviouralEntity.
+	trigger --|> #TNamespace.
+	trigger --|> tWithColumnContainerReference.
+
+	view --|> sqlBehaviouralEntity.
+	view --|> tColumnContainer.
+	view --|> tQueryContainer.
+	view --|> #TNamespace.
+	"view --|> #TWithImmediateSource.
+	view --|> tAbstractType."
+
+	"Queries"
+
+	crudQuery --|> sqlBehaviouralEntity.
+	"crudQuery --|> #TWithSourceAnchor.
+	crudQuery --|> #TDependencyQueries."
+
 	deleteQuery --|> crudQuery.
 	"deleteQuery --|> tDefiningDerivedTables."
+	insertQuery --|> crudQuery.
+	"insertQuery --|> tDefiningDerivedTables."
+	selectQuery --|> crudQuery.
+	"selectQuery --|> tDefiningDerivedTables."
+	updateQuery --|> crudQuery.
+	"updateQuery --|> tDefiningDerivedTables."
 	valuesQuery --|> crudQuery.
-	
-	parameter --|> #TParameter.
-	parameter --|> #TAccessible.
-	
-	localVariable --|> #TLocalVariable.
-	localVariable --|> #TAccessible.
-
-	newLocalVariable --|> localVariable.
-	newLocalVariable --|> tColumnContainer.
-
-	oldLocalVariable --|> localVariable.
-	oldLocalVariable --|> tColumnContainer.
 
 	"Clauses"	
 
-	clause --|> behaviouralEntity.
+	clause --|> sqlBehaviouralEntity.
+
+	exceptClause --|> clause.
+	exceptClause --|> tWithColumnContainerReference.
+	"exceptClause --|> tWithNamespaceReference."
 
 	fromClause --|> clause.
 	fromClause --|> tWithColumnContainerReference.
 	fromClause --|> tWithColumnReference. "Because of join clause"
 	fromClause --|> #TWithAccesses. "Because of join clause"
 	fromClause --|> #TWithInvocations. "Because of join clause"
-	"whereClause --|> tWithReferencesGroupReference.
-	whereClause --|> tWithNamespaceReference."
-	
-	whereClause --|> clause.
-	whereClause --|> tWithColumnReference.
-	whereClause --|> #TWithAccesses.
-	whereClause --|> #TWithInvocations.
-	whereClause --|> tWithColumnContainerReference. "For table.column ref."
-	"whereClause --|> tWithReferencesGroupReference.
-	whereClause --|> tWithNamespaceReference."
-	
-	returningClause --|> clause.
-	returningClause --|> tWithColumnReference.
-	"returningClause --|> tWithReferencesGroupReference."
-	returningClause --|> #TWithAccesses.
-	returningClause --|> #TWithInvocations.
-	
-	setClause --|> clause.
-	setClause --|> tWithColumnContainerReference.
-	setClause --|> tWithColumnReference.
-	setClause --|> #TWithAccesses.
-	setClause --|> #TWithInvocations.
-	
-	selectClause --|> clause.
-	selectClause --|> tWithColumnReference.
-	selectClause --|> #TWithAccesses.
-	selectClause --|> #TWithInvocations.
-	selectClause --|> tWithColumnContainerReference. "Through table.column ref."
-	"selectClause --|> tWithNamespaceReference."
-	
+	"fromClause --|> tWithReferencesGroupReference.
+	fromClause --|> tWithNamespaceReference."
+
 	groupByClause --|> clause.
 	groupByClause --|> #TWithAccesses.
 	groupByClause --|> #TWithInvocations.
@@ -236,7 +232,7 @@ FamixSQLGenerator >> defineHierarchy [
 	groupByClause --|> tWithColumnContainerReference. "For table.column ref."
 	"groupByClause --|> tWithReferencesGroupReference.
 	groupByClause --|> tWithNamespaceReference."
-	
+
 	havingClause --|> clause.
 	havingClause --|> #TWithAccesses.
 	havingClause --|> #TWithInvocations.
@@ -244,7 +240,22 @@ FamixSQLGenerator >> defineHierarchy [
 	havingClause --|> tWithColumnContainerReference. "For table.column ref."
 	"havingClause --|> tWithReferencesGroupReference.
 	havingClause --|> tWithNamespaceReference."
-	
+
+	intersectClause --|> clause.
+	intersectClause --|> tWithColumnContainerReference.
+	"intersectClause --|> tWithNamespaceReference."
+
+	intoClause --|> clause.
+	intoClause --|> tWithColumnContainerReference.
+	intoClause --|> tWithColumnReference.
+	"intoClause --|> tWithNamespaceReference."
+
+	joinClause --|> clause.
+
+	limitClause --|> clause.
+
+	onConflictClause --|> clause.
+
 	orderByClause --|> clause.
 	orderByClause --|> #TWithAccesses.
 	orderByClause --|> #TWithInvocations.
@@ -252,41 +263,50 @@ FamixSQLGenerator >> defineHierarchy [
 	orderByClause --|> tWithColumnContainerReference. "For view.column ref."
 	"orderByClause --|> tWithReferencesGroupReference.
 	orderByClause --|> tWithNamespaceReference."
-	
-	onConflictClause --|> clause.
-	
-	withClause --|> clause.
-	
-	joinClause --|> clause.
-	
+
+	returningClause --|> clause.
+	returningClause --|> tWithColumnReference.
+	"returningClause --|> tWithReferencesGroupReference."
+	returningClause --|> #TWithAccesses.
+	returningClause --|> #TWithInvocations.
+
+	setClause --|> clause.
+	setClause --|> tWithColumnContainerReference.
+	setClause --|> tWithColumnReference.
+	setClause --|> #TWithAccesses.
+	setClause --|> #TWithInvocations.
+
+	selectClause --|> clause.
+	selectClause --|> tWithColumnReference.
+	selectClause --|> #TWithAccesses.
+	selectClause --|> #TWithInvocations.
+	selectClause --|> tWithColumnContainerReference. "Through table.column ref."
+	"selectClause --|> tWithNamespaceReference."
+
 	unionClause --|> clause.
 	unionClause --|> tWithColumnContainerReference.
 	"unionClause --|> tWithNamespaceReference."
-	
-	intersectClause --|> clause.
-	intersectClause --|> tWithColumnContainerReference.
-	"intersectClause --|> tWithNamespaceReference."
-	
-	exceptClause --|> clause.
-	exceptClause --|> tWithColumnContainerReference.
-	"exceptClause --|> tWithNamespaceReference."
-	
+
+	usingClause --|> clause.
+	usingClause --|> tWithColumnContainerReference.
+	"usingClause --|> tWithNamespaceReference."
+
 	valuesClause --|> clause.
 	valuesClause --|> #TWithAccesses.
 	valuesClause --|> #TWithInvocations.
 	valuesClause --|> tWithColumnContainerReference.
 	valuesClause --|> tWithColumnReference.
-	
-	usingClause --|> clause.
-	usingClause --|> tWithColumnContainerReference.
-	"usingClause --|> tWithNamespaceReference."
-	
-	intoClause --|> clause.
-	intoClause --|> tWithColumnContainerReference.
-	intoClause --|> tWithColumnReference.
-	"intoClause --|> tWithNamespaceReference."
-	
-	limitClause --|> clause
+
+	whereClause --|> clause.
+	whereClause --|> tWithColumnReference.
+	whereClause --|> #TWithAccesses.
+	whereClause --|> #TWithInvocations.
+	whereClause --|> tWithColumnContainerReference. "For table.column ref."
+	"whereClause --|> tWithReferencesGroupReference.
+	whereClause --|> tWithNamespaceReference."
+
+	withClause --|> clause.
+
 ]
 
 { #category : #definition }
@@ -309,159 +329,159 @@ FamixSQLGenerator >> defineTraitsRelations [
 
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> deleteQueryComment [
 	^ 'I am an DELETE query.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> derivedTableComment [
 	^ 'I am a derived table. A derived table is a temporary table created to store temporarily the results of a sub-select query in a select query. Such tables are not globally named as a Tableor a View because they can not be accessed outside the query in which they are computed (which is also the query defining them). Nonetheless, they can get an alias to be referenced inside the query. .'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> exceptClauseComment [
 	^ 'I am an EXCEPT clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> fromClauseComment [
 	^ 'I am a FROM clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> groupByClauseComment [
 	^ 'I am a GROUP BY clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> havingClauseComment [
 	^ 'I am a HAVING clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> insertQueryComment [
 	^ 'I am an INSERT query.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> intersectClauseComment [
 	^ 'I am an INTERSECT clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> intoClauseComment [
 	^ 'I am an INTO clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> joinClauseComment [
 	^ 'I am a JOIN clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> limitClauseComment [
 	^ 'I am a LIMIT clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> localVariableComment [
 	^ 'I am a local variable of a stored procedure. I have a type.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> newLocalVariableComment [
 	^ 'I model the special NEW local variable accessible from inside trigger stored procedure.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> oldLocalVariableComment [
 	^ 'I model the special OLD local variable accessible from inside trigger stored procedure.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> orderByClauseComment [
 	^ 'I am an ORDER BY clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> parameterComment [
 	^ 'I am a parameter of a stored procedure. I have a type.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> returningClauseComment [
 	^ 'I am a RETURNING clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> selectClauseComment [
 	^ 'I am a SELECT clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> selectQueryComment [
 	^ 'I am an SELECT query.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> setClauseComment [
 	^ 'I am a SET clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> storedProcedureComment [
 	^ 'I am a stored procedure. That is to say, a function that is defined inside the database.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> triggerComment [
 	^ 'I am a trigger. A trigger allows to define actions to performs when a specific event occurs on a table. Because a trigger can not exist without the table to which it listens to events, a trigger is contained in a table.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> triggerStoredProcedureComment [
 	^ 'I am a special stored procedure used to define the actions a trigger perform.
 
 This concept does not exists in all DBMS (for example, in MySQL a trigger has a body directly defined when defining the trigger). Nevertheless, it allows to unify the different approach take by different DBMS. In the meta-model, a trigger is always defined as referencing a trigger stored procedure. For DBMS where it is not implemented like that in reality, the trigger stored procedure as no name because it is virtual.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> unionClauseComment [
 	^ 'I am a UNION clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> updateQueryComment [
 	^ 'I am an UPDATE query.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> usingClauseComment [
 	^ 'I am a USING clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> valuesClauseComment [
 	^ 'I am a VALUES clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> valuesQueryComment [
 	^ 'I am a VALUES query.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> viewComment [
 	^ 'I am a view. I can be used transparently as a table but I do not hold data. My data are fetched by the SELECT query which defines myself.'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> whereClauseComment [
 	^ 'I am a WHERE clause in a query'
 ]
 
-{ #category : #'comments - SQL' }
+{ #category : #comments }
 FamixSQLGenerator >> withClauseComment [
 	^ 'I am a WITH clause in a query'
 ]

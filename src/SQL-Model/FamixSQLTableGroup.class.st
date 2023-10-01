@@ -28,7 +28,42 @@ FamixSQLTableGroup >> isAssociation [
 ]
 
 { #category : #testing }
+FamixSQLTableGroup >> isLocalVariable [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixSQLTableGroup >> isNamespace [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixSQLTableGroup >> isStoredProcedure [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixSQLTableGroup >> isStructuralEntity [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixSQLTableGroup >> isTriggerStoredProcedure [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixSQLTableGroup >> isView [
 
 	<generated>
 	^ false

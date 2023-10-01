@@ -10,7 +10,6 @@ Class {
 		'columnReference',
 		'checkConstraint',
 		'tColumn',
-		'structuralEntity',
 		'type',
 		'notNullConstraint',
 		'uniqueConstraint',
@@ -26,7 +25,8 @@ Class {
 		'typeReference',
 		'tWithColumnContainerReference',
 		'tColumnContainer',
-		'tColumnContainerReference'
+		'tColumnContainerReference',
+		'sqlStructuralEntity'
 	],
 	#category : #'SQL-Model-Generator'
 }
@@ -90,7 +90,7 @@ FamixSQLStructuralGenerator >> defineClasses [
 	super defineClasses.
 
 	"Structural entities"
-	structuralEntity := builder newClassNamed: #StructuralEntity comment: self structuralEntityComment.
+	sqlStructuralEntity := builder newClassNamed: #StructuralEntity comment: self structuralEntityComment.
 	column := builder newClassNamed: #Column.
 	namespace := builder newClassNamed: #Namespace comment: self namespaceComment.
 	table := builder newClassNamed: #Table.
@@ -119,21 +119,21 @@ FamixSQLStructuralGenerator >> defineHierarchy [
 	super defineHierarchy.
 
 	"Structural entities"
-	structuralEntity --|> #TNamedEntity.
-	structuralEntity --|> #TEntityMetaLevelDependency.
+	sqlStructuralEntity --|> #TNamedEntity.
+	sqlStructuralEntity --|> #TEntityMetaLevelDependency.
 
 	column --|> tColumn.
-	namespace --|> structuralEntity.
-	namespace --|> #TNamespace.
-	"table --|> tAbstractType."
-	table --|> tColumnContainer.
-	table --|> structuralEntity.
-	
-	column --|> structuralEntity.
-	column --|> tColumn.
+	column --|> sqlStructuralEntity.
 	column --|> tWithTypeReference.
 	
-	type --|> structuralEntity.
+	namespace --|> sqlStructuralEntity.
+	namespace --|> #TNamespace.
+
+	"table --|> tAbstractType."
+	table --|> tColumnContainer.
+	table --|> sqlStructuralEntity.
+
+	type --|> sqlStructuralEntity.
 	type --|> tType.
 
 	"Reference"
@@ -143,7 +143,7 @@ FamixSQLStructuralGenerator >> defineHierarchy [
 	typeReference --|> tTypeReference.
 
 	"Constraint"
-	constraint --|> structuralEntity.
+	constraint --|> sqlStructuralEntity.
 	constraint --|> tWithColumnReference.
 	columnConstraint --|> constraint.
 	columnConstraint --|> tWithColumnReference.
