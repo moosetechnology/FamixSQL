@@ -104,9 +104,9 @@ FamixSQLImporter >> ensureCreateView: viewName [
 
 	^model asOrderedCollection
 		detect: [ :el | 
-			(el isKindOf: FmxSQLQView) and: [ el name = viewName ] ]
+			(el isKindOf: FamixSQLView) and: [ el name = viewName ] ]
 		ifNone: [ | view |
-			view := FmxSQLQView new.
+			view := FamixSQLView new.
 			view name: viewName.
 			self model add: view.
 			view

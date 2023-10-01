@@ -77,7 +77,7 @@ FamixSQLODBCImporter >> columns: aTableName [
 FamixSQLODBCImporter >> import [
 
 	self importTables.
-	"self importViews."
+	self importViews.
 
 	^ self model
 ]
