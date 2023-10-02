@@ -72,45 +72,34 @@ FamixSQLImporter >> ensureCreateColumn: columnName for: aFamixSQLTable [
 ]
 
 { #category : #importing }
+FamixSQLImporter >> ensureCreateEntity: aSQLClass named: aName [
+
+	^(model allWithType: aSQLClass)
+		detect: [ :el | el name = aName ]
+		ifNone: [ | entity |
+			entity := aSQLClass new.
+			entity name: aName.
+			self model add: entity.
+			entity
+		]
+]
+
+{ #category : #importing }
 FamixSQLImporter >> ensureCreateSchema: schemaName [
 
-	^model asOrderedCollection
-		detect: [ :el | 
-			(el isKindOf: FamixSQLNamespace) and: [ el name = schemaName ] ]
-		ifNone: [ | schema |
-			schema := FamixSQLNamespace new.
-			schema name: schemaName.
-			self model add: schema.
-			schema
-		]
+	^self ensureCreateEntity: FamixSQLNamespace named: schemaName
 ]
 
 { #category : #importing }
 FamixSQLImporter >> ensureCreateTable: tableName [
 
-	^model asOrderedCollection
-		detect: [ :el | 
-			(el isKindOf: FamixSQLTable) and: [ el name = tableName ] ]
-		ifNone: [ | table |
-			table := FamixSQLTable new.
-			table name: tableName.
-			self model add: table.
-			table
-		]
+	^self ensureCreateEntity: FamixSQLTable named: tableName
 ]
 
 { #category : #importing }
 FamixSQLImporter >> ensureCreateView: viewName [
 
-	^model asOrderedCollection
-		detect: [ :el | 
-			(el isKindOf: FamixSQLView) and: [ el name = viewName ] ]
-		ifNone: [ | view |
-			view := FamixSQLView new.
-			view name: viewName.
-			self model add: view.
-			view
-		]
+	^self ensureCreateEntity: FamixSQLView named: viewName
 ]
 
 { #category : #initialization }
