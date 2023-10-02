@@ -26,7 +26,8 @@ Class {
 		'tWithColumnContainerReference',
 		'tColumnContainer',
 		'tColumnContainerReference',
-		'sqlStructuralEntity'
+		'sqlStructuralEntity',
+		'foreignColumnReference'
 	],
 	#category : #'SQL-Model-Generator'
 }
@@ -82,6 +83,15 @@ FamixSQLStructuralGenerator >> defineClassRelations [
 
 	(table property: #constraints) -* tableConstraint.
 
+	(foreignColumnReference property: #foreignKeyConstraint)
+		source
+		*- (foreigneKeyConstraint property: #foreignColumnReference).
+		"should be a oneToOne relation, but breaks the generation of the meta-model"
+
+	(foreignColumnReference property: #primaryKeyColumn)
+		target
+		*- (tColumn property: #incomingForeignKeyReferences).
+
 ]
 
 { #category : #definition }
@@ -110,6 +120,7 @@ FamixSQLStructuralGenerator >> defineClasses [
 
 	"References"
 	columnReference := builder newClassNamed: #ColumnReference comment: self columnReferenceComment.
+	foreignColumnReference := builder newClassNamed: #ForeignColumnReference.
 	typeReference := builder newClassNamed: #TypeReference comment: self typeReferenceComment. 
 ]
 
