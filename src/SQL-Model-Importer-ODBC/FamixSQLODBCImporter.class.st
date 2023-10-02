@@ -98,14 +98,11 @@ FamixSQLODBCImporter >> importTableColumns: table [
 FamixSQLODBCImporter >> importTableForeignKeys: table [
 
 	| foreignKeys |
-
 	'import foreignkeys of TABLE: ' trace.
 	table name traceCr.
-1haltIf:[ table name = 'action'].
 	foreignKeys := self source
-		queryForeignKeysOf: table name
-		inSchema: self schema.
-
+		               queryForeignKeysOf: table name
+		               inSchema: self schema.
 	foreignKeys do: [ :foreignKey |
 		self buildForeignKey: foreignKey for: table ]
 ]
@@ -115,14 +112,13 @@ FamixSQLODBCImporter >> importTablePrimaryKeys: table [
 
 	'import primarykeys of TABLE: ' trace.
 	table name traceCr.
-1haltIf:[ table name = 'action'].
-  (self source queryPrimaryKeysOf: table name inSchema: self schema)
-	  do: [ :primaryKey |
-		  self
-			  createPrimaryIfRequired: table
-			  for: nil
-			  basedOn: (primaryKey at: #PK_NAME)
-			  and: (primaryKey at: #COLUMN_NAME) ]
+	(self source queryPrimaryKeysOf: table name inSchema: self schema)
+		do: [ :primaryKey |
+			self
+				createPrimaryIfRequired: table
+				for: nil
+				basedOn: (primaryKey at: #PK_NAME)
+				and: (primaryKey at: #COLUMN_NAME) ]
 ]
 
 { #category : #importing }
