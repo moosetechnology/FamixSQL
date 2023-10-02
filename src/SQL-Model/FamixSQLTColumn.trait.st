@@ -2,6 +2,7 @@ Trait {
 	#name : #FamixSQLTColumn,
 	#instVars : [
 		'#columnsContainer => FMOne type: #FamixSQLTColumnContainer opposite: #columns',
+		'#incomingForeignKeyReferences => FMMany type: #FamixSQLForeignColumnReference opposite: #primaryKeyColumn',
 		'#incomingReferences => FMMany type: #FamixSQLTColumnReference opposite: #column'
 	],
 	#category : #'SQL-Model-Traits'
@@ -14,6 +15,12 @@ FamixSQLTColumn classSide >> annotation [
 	<package: #'SQL-Model'>
 	<generated>
 	^ self
+]
+
+{ #category : #adding }
+FamixSQLTColumn >> addIncomingForeignKeyReference: anObject [
+	<generated>
+	^ self incomingForeignKeyReferences add: anObject
 ]
 
 { #category : #adding }
@@ -43,6 +50,22 @@ FamixSQLTColumn >> columnsContainerGroup [
 	<generated>
 	<navigation: 'ColumnsContainer'>
 	^ MooseSpecializedGroup with: self columnsContainer
+]
+
+{ #category : #accessing }
+FamixSQLTColumn >> incomingForeignKeyReferences [
+	"Relation named: #incomingForeignKeyReferences type: #FamixSQLForeignColumnReference opposite: #primaryKeyColumn"
+
+	<generated>
+	<derived>
+	^ incomingForeignKeyReferences
+]
+
+{ #category : #accessing }
+FamixSQLTColumn >> incomingForeignKeyReferences: anObject [
+
+	<generated>
+	incomingForeignKeyReferences value: anObject
 ]
 
 { #category : #accessing }

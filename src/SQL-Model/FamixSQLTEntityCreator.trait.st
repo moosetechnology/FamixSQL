@@ -115,6 +115,13 @@ FamixSQLTEntityCreator >> newExceptClause [
 ]
 
 { #category : #'entity creation' }
+FamixSQLTEntityCreator >> newForeignColumnReference [
+
+	<generated>
+	^ self add: FamixSQLForeignColumnReference new
+]
+
+{ #category : #'entity creation' }
 FamixSQLTEntityCreator >> newForeignKeyConstraint [
 
 	<generated>
