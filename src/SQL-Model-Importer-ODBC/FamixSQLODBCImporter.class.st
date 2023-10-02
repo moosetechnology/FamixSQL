@@ -83,32 +83,60 @@ FamixSQLODBCImporter >> import [
 ]
 
 { #category : #importing }
+FamixSQLODBCImporter >> importTableColumns: table [
+
+	'import columns of TABLE: ' trace.
+	table name traceCr.
+
+	(self columns: table name) do: [ :column || sqlColumn |
+		  sqlColumn := self ensureCreateColumn: column name for: table
+	].
+
+]
+
+{ #category : #importing }
+FamixSQLODBCImporter >> importTableForeignKeys: table [
+
+	| foreignKeys |
+
+	'import foreignkeys of TABLE: ' trace.
+	table name traceCr.
+1haltIf:[ table name = 'action'].
+	foreignKeys := self source
+		queryForeignKeysOf: table name
+		inSchema: self schema.
+
+	foreignKeys do: [ :foreignKey |
+		self buildForeignKey: foreignKey for: table ]
+]
+
+{ #category : #importing }
+FamixSQLODBCImporter >> importTablePrimaryKeys: table [
+
+	'import primarykeys of TABLE: ' trace.
+	table name traceCr.
+1haltIf:[ table name = 'action'].
+  (self source queryPrimaryKeysOf: table name inSchema: self schema)
+	  do: [ :primaryKey |
+		  self
+			  createPrimaryIfRequired: table
+			  for: nil
+			  basedOn: (primaryKey at: #PK_NAME)
+			  and: (primaryKey at: #COLUMN_NAME) ]
+]
+
+{ #category : #importing }
 FamixSQLODBCImporter >> importTables [
 
-	self sourceTables do: [ :tableName | 
-		| table |
-		('import struct of TABLE: ' , tableName) traceCr.
-		table := self ensureCreateTable: tableName.
-		(self columns: tableName) do: [ :column | 
-			| sqlColumn |
-			sqlColumn := self ensureCreateColumn: column name for: table.
-			(self source queryPrimaryKeysOf: tableName inSchema: self schema) 
-				do: [ :primaryKey | 
-					self
-						createPrimaryIfRequired: table
-						for: sqlColumn
-						basedOn: (primaryKey at: #PK_NAME)
-						and: (primaryKey at: #COLUMN_NAME) ] ] ].
+	self sourceTables do: [ :tableName || table |
+		'import struct of TABLE: ' trace.
+		tableName traceCr.
 
-	self sourceTables do: [ :tableName | 
-		| table foreignKeys |
-		('import foreignkeys of TABLE: ' , tableName) traceCr.
 		table := self ensureCreateTable: tableName.
-		foreignKeys := self source
-			               queryForeignKeysOf: tableName
-			               inSchema: self schema.
-		foreignKeys do: [ :foreignKey | 
-			self buildForeignKey: foreignKey for: table ] ].
+		self importTableColumns: table.
+		self importTableForeignKeys: table
+	].
+
 	^ self model
 ]
 
