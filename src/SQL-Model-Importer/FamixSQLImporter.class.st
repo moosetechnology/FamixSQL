@@ -8,57 +8,7 @@ Class {
 }
 
 { #category : #importing }
-FamixSQLImporter >> createForeignIfRequired: table for: column basedOn: fkConstraintName and: fkColumnName [
-
-	| foreignKeyConstraint columnReference |
-	fkColumnName ~= 'NULL' ifFalse: [ ^ nil ].
-
-	table constraints
-		detect: [ :constraint | constraint name = fkConstraintName ]
-		ifOne: [:constraint | ^constraint ].
-
-	foreignKeyConstraint := FamixSQLForeignKeyConstraint new.
-	foreignKeyConstraint name: fkConstraintName.
-
-	table addConstraint: foreignKeyConstraint.
-
-	columnReference := FamixSQLColumnReference new.
-	columnReference column: column.
-	foreignKeyConstraint addColumnReference: columnReference.
-
-	self model addAll: { 
-			foreignKeyConstraint.
-			columnReference }.
-
-	^ foreignKeyConstraint
-]
-
-{ #category : #importing }
-FamixSQLImporter >> createPrimaryIfRequired: table for: column basedOn: pkConstraintName and: pkColumnName [
-
-	| primaryKeyConstraint columnReference |
-	pkColumnName ~= 'NULL' ifFalse: [ ^ self ].
-
-	table constraints
-		detect: [ :constraint | constraint name = pkConstraintName ]
-		ifOne: [:constraint | ^constraint ].
-
-	primaryKeyConstraint := FamixSQLPrimaryKeyConstraint new.
-	primaryKeyConstraint name: pkConstraintName.
-
-	table addConstraint: primaryKeyConstraint.
-
-	columnReference := FamixSQLColumnReference new.
-	columnReference column: column.
-	primaryKeyConstraint addColumnReference: columnReference.
-
-	self model addAll: { 
-			primaryKeyConstraint.
-			columnReference }
-]
-
-{ #category : #importing }
-FamixSQLImporter >> ensureCreateColumn: columnName for: aFamixSQLTable [
+FamixSQLImporter >> ensureCreateColumn: columnName in: aFamixSQLTable [
 
 	^ aFamixSQLTable columns
 		  detect: [ :el | el name = columnName ]
@@ -82,6 +32,50 @@ FamixSQLImporter >> ensureCreateEntity: aSQLClass named: aName [
 			self model add: entity.
 			entity
 		]
+]
+
+{ #category : #importing }
+FamixSQLImporter >> ensureCreateForeignKey: fkConstraintName in: table column: column [
+
+	| foreignKeyConstraint columnReference |
+
+	table constraints
+		detect: [ :constraint | constraint name = fkConstraintName ]
+		ifOne: [:constraint | ^constraint ].
+
+	foreignKeyConstraint := self model newForeignKeyConstraint.
+	foreignKeyConstraint name: fkConstraintName.
+	table addConstraint: foreignKeyConstraint.
+
+	columnReference := self model newColumnReference.
+	columnReference column: column.
+	foreignKeyConstraint addColumnReference: columnReference.
+
+	^ foreignKeyConstraint
+]
+
+{ #category : #importing }
+FamixSQLImporter >> ensureCreatePrimaryKeyConstraint: pkConstraintName in: table column: pkColumnName [
+
+	| primaryKeyConstraint columnReference |
+	pkColumnName ~= 'NULL' ifFalse: [ ^ self ].
+
+	table constraints
+		detect: [ :constraint | constraint name = pkConstraintName ]
+		ifOne: [:constraint | ^constraint ].
+
+	primaryKeyConstraint := FamixSQLPrimaryKeyConstraint new.
+	primaryKeyConstraint name: pkConstraintName.
+
+	table addConstraint: primaryKeyConstraint.
+
+	columnReference := FamixSQLColumnReference new.
+	columnReference column: (self ensureCreateColumn: pkColumnName in: table).
+	primaryKeyConstraint addColumnReference: columnReference.
+
+	self model addAll: { 
+			primaryKeyConstraint.
+			columnReference }
 ]
 
 { #category : #importing }

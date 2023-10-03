@@ -38,28 +38,6 @@ Class {
 	#category : #'SQL-Model-Importer-ODBC'
 }
 
-{ #category : #importing }
-FamixSQLODBCImporter >> buildForeignKey: foreignKey for: table [
-
-	| sqlForeignKey targetColumn columnReference targetTable tableColumn |
-	tableColumn := self
-		               ensureCreateColumn: (foreignKey at: #FKCOLUMN_NAME)
-		               for: table.
-	sqlForeignKey := self
-		                 createForeignIfRequired: table
-		                 for: tableColumn
-		                 basedOn: (foreignKey at: #FK_NAME)
-		                 and: (foreignKey at: #FKCOLUMN_NAME).
-	targetTable := self ensureCreateTable: (foreignKey at: #PKTABLE_NAME).
-	targetColumn := self
-		                ensureCreateColumn: (foreignKey at: #PKCOLUMN_NAME)
-		                for: targetTable.
-
-	columnReference := FamixSQLColumnReference new.
-	columnReference column: targetColumn.
-	^ sqlForeignKey addColumnReference: columnReference
-]
-
 { #category : #querying }
 FamixSQLODBCImporter >> columns: aTableName [
 
@@ -74,10 +52,37 @@ FamixSQLODBCImporter >> columns: aTableName [
 ]
 
 { #category : #importing }
+FamixSQLODBCImporter >> ensureCreateForeignKey: foreignKey for: table [
+
+	| foreignKeyConstraint columnReference primaryKeyTable primaryKeyColumn primaryKeyColumnName foreignKeyColumn |
+
+	primaryKeyColumnName := foreignKey at: #PKCOLUMN_NAME.
+	primaryKeyColumnName = 'NULL' ifTrue: [ ^ nil ].
+
+	foreignKeyColumn := self
+		ensureCreateColumn: (foreignKey at: #FKCOLUMN_NAME) in: table.
+
+	foreignKeyConstraint := self
+		ensureCreateForeignKey: (foreignKey at: #FK_NAME)
+		in: table
+		column: foreignKeyColumn.
+
+	primaryKeyTable := self ensureCreateTable: (foreignKey at: #PKTABLE_NAME).
+	primaryKeyColumn := self
+		ensureCreateColumn: primaryKeyColumnName in: primaryKeyTable.
+
+	columnReference := FamixSQLColumnReference new.
+	columnReference column: primaryKeyColumn.
+	foreignKeyConstraint addForeignColumnReference: columnReference.
+	
+	^foreignKeyConstraint 
+]
+
+{ #category : #importing }
 FamixSQLODBCImporter >> import [
 
 	self importTables.
-	self importViews.
+	"self importViews."
 
 	^ self model
 ]
@@ -89,7 +94,7 @@ FamixSQLODBCImporter >> importTableColumns: table [
 	table name traceCr.
 
 	(self columns: table name) do: [ :column || sqlColumn |
-		  sqlColumn := self ensureCreateColumn: column name for: table
+		  sqlColumn := self ensureCreateColumn: column name in: table
 	].
 
 ]
@@ -97,14 +102,14 @@ FamixSQLODBCImporter >> importTableColumns: table [
 { #category : #importing }
 FamixSQLODBCImporter >> importTableForeignKeys: table [
 
-	| foreignKeys |
 	'import foreignkeys of TABLE: ' trace.
 	table name traceCr.
-	foreignKeys := self source
-		               queryForeignKeysOf: table name
-		               inSchema: self schema.
-	foreignKeys do: [ :foreignKey |
-		self buildForeignKey: foreignKey for: table ]
+
+	(self source
+		queryForeignKeysOf: table name inSchema: self schema)
+
+		do: [ :foreignKey |
+			self ensureCreateForeignKey: foreignKey for: table ]
 ]
 
 { #category : #importing }
@@ -115,10 +120,9 @@ FamixSQLODBCImporter >> importTablePrimaryKeys: table [
 	(self source queryPrimaryKeysOf: table name inSchema: self schema)
 		do: [ :primaryKey |
 			self
-				createPrimaryIfRequired: table
-				for: nil
-				basedOn: (primaryKey at: #PK_NAME)
-				and: (primaryKey at: #COLUMN_NAME) ]
+				ensureCreatePrimaryKeyConstraint: (primaryKey at: #PK_NAME)
+				in: table
+				column: (primaryKey at: #COLUMN_NAME) ]
 ]
 
 { #category : #importing }
@@ -130,6 +134,7 @@ FamixSQLODBCImporter >> importTables [
 
 		table := self ensureCreateTable: tableName.
 		self importTableColumns: table.
+		self importTablePrimaryKeys: table.
 		self importTableForeignKeys: table
 	].
 
@@ -145,7 +150,7 @@ FamixSQLODBCImporter >> importViews [
 		view := self ensureCreateView: viewName.
 		(self columns: viewName) do: [ :column | 
 			| sqlColumn |
-			sqlColumn := self ensureCreateColumn: column name for: view ] ].
+			sqlColumn := self ensureCreateColumn: column name in: view ] ].
 
 ]
 
