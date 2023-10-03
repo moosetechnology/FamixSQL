@@ -96,6 +96,27 @@ FamixSQLImporter >> ensureCreateView: viewName [
 	^self ensureCreateEntity: FamixSQLView named: viewName
 ]
 
+{ #category : #importing }
+FamixSQLImporter >> import [
+
+	self importTables.
+	self importViews.
+
+	^ self model
+]
+
+{ #category : #importing }
+FamixSQLImporter >> importTables [ 
+
+	self subclassResponsibility 
+]
+
+{ #category : #importing }
+FamixSQLImporter >> importViews [
+
+	self subclassResponsibility 
+]
+
 { #category : #initialization }
 FamixSQLImporter >> initialize [
 

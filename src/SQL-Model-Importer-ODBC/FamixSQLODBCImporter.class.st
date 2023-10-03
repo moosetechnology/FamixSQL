@@ -80,15 +80,6 @@ FamixSQLODBCImporter >> ensureCreateForeignKey: foreignKey for: table [
 ]
 
 { #category : #importing }
-FamixSQLODBCImporter >> import [
-
-	self importTables.
-	"self importViews."
-
-	^ self model
-]
-
-{ #category : #importing }
 FamixSQLODBCImporter >> importTableColumns: table [
 
 	'import columns of TABLE: ' trace.
