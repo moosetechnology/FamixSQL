@@ -3,7 +3,7 @@ I am a reference to a derived table.
 "
 Class {
 	#name : #FmxSQLQDerivedTableReference,
-	#superclass : #FamixSQLReference,
+	#superclass : #AnObsoleteFamixSQLReference,
 	#instVars : [
 		'#derivedTable => FMOne type: #FmxSQLQDerivedTable opposite: #references',
 		'#source => FMOne type: #FmxSQLQTWithDerivedTableReference opposite: #outgoingDerivedTableReferences'

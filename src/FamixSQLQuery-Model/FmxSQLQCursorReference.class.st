@@ -3,7 +3,7 @@ I am a reference to a cursor
 "
 Class {
 	#name : #FmxSQLQCursorReference,
-	#superclass : #FamixSQLReference,
+	#superclass : #AnObsoleteFamixSQLReference,
 	#traits : 'FmxSQLQTWithQualifiedReference',
 	#classTraits : 'FmxSQLQTWithQualifiedReference classTrait',
 	#instVars : [

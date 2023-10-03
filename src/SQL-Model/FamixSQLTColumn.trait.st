@@ -1,7 +1,9 @@
 Trait {
 	#name : #FamixSQLTColumn,
 	#instVars : [
-		'#columnsContainer => FMOne type: #FamixSQLTColumnsContainer opposite: #columns'
+		'#columnsContainer => FMOne type: #FamixSQLTColumnContainer opposite: #columns',
+		'#incomingForeignKeyReferences => FMMany type: #FamixSQLForeignColumnReference opposite: #primaryKeyColumn',
+		'#incomingReferences => FMMany type: #FamixSQLTColumnReference opposite: #column'
 	],
 	#category : #'SQL-Model-Traits'
 }
@@ -12,12 +14,24 @@ FamixSQLTColumn classSide >> annotation [
 	<FMClass: #TColumn super: #Object>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
+	^ self
+]
+
+{ #category : #adding }
+FamixSQLTColumn >> addIncomingForeignKeyReference: anObject [
+	<generated>
+	^ self incomingForeignKeyReferences add: anObject
+]
+
+{ #category : #adding }
+FamixSQLTColumn >> addIncomingReference: anObject [
+	<generated>
+	^ self incomingReferences add: anObject
 ]
 
 { #category : #accessing }
 FamixSQLTColumn >> columnsContainer [
-	"Relation named: #columnsContainer type: #FamixSQLTColumnsContainer opposite: #columns"
+	"Relation named: #columnsContainer type: #FamixSQLTColumnContainer opposite: #columns"
 
 	<generated>
 	<container>
@@ -36,4 +50,36 @@ FamixSQLTColumn >> columnsContainerGroup [
 	<generated>
 	<navigation: 'ColumnsContainer'>
 	^ MooseSpecializedGroup with: self columnsContainer
+]
+
+{ #category : #accessing }
+FamixSQLTColumn >> incomingForeignKeyReferences [
+	"Relation named: #incomingForeignKeyReferences type: #FamixSQLForeignColumnReference opposite: #primaryKeyColumn"
+
+	<generated>
+	<derived>
+	^ incomingForeignKeyReferences
+]
+
+{ #category : #accessing }
+FamixSQLTColumn >> incomingForeignKeyReferences: anObject [
+
+	<generated>
+	incomingForeignKeyReferences value: anObject
+]
+
+{ #category : #accessing }
+FamixSQLTColumn >> incomingReferences [
+	"Relation named: #incomingReferences type: #FamixSQLTColumnReference opposite: #column"
+
+	<generated>
+	<derived>
+	^ incomingReferences
+]
+
+{ #category : #accessing }
+FamixSQLTColumn >> incomingReferences: anObject [
+
+	<generated>
+	incomingReferences value: anObject
 ]

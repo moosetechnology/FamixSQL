@@ -10,7 +10,15 @@ FamixSQLEntity class >> annotation [
 	<FMClass: #Entity super: #MooseEntity>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
+	<abstract>
+	^ self
+]
+
+{ #category : #testing }
+FamixSQLEntity class >> isAbstract [
+
+	<generated>
+	^ self == FamixSQLEntity
 ]
 
 { #category : #meta }
@@ -22,6 +30,48 @@ FamixSQLEntity class >> metamodel [
 
 { #category : #testing }
 FamixSQLEntity >> isAssociation [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixSQLEntity >> isLocalVariable [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixSQLEntity >> isNamespace [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixSQLEntity >> isStoredProcedure [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixSQLEntity >> isStructuralEntity [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixSQLEntity >> isTriggerStoredProcedure [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
+FamixSQLEntity >> isView [
 
 	<generated>
 	^ false

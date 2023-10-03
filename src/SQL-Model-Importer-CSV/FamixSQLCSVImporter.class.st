@@ -39,18 +39,12 @@ FamixSQLCSVImporter >> importLine: line [
 	schema := self ensureCreateSchema: line first.
 	table := self ensureCreateTable: line second.
 	table schema: schema.
-	column := self ensureCreateColumn: line third for: table.
+	column := self ensureCreateColumn: line third in: table.
 	self
-		createPrimaryIfRequired: table
-		for: column
-		basedOn: (line at: 9)
-		and: (line at: 10).
-	self
-		createForeignIfRequired: table
-		for: column
-		basedOn: (line at: 7)
-		and: (line at: 8).
-	
+		ensureCreatePrimaryKeyConstraint: (line at: 9)
+		in: table
+		column: (line at: 10).
+	self ensureCreateForeignKey: (line at: 7) in: table column: column
 ]
 
 { #category : #initialization }
@@ -66,29 +60,28 @@ FamixSQLCSVImporter >> resolveForeignKey: line [
 
 	| foreignKey table column |
 	table := self ensureCreateTable: line second.
-	column := self ensureCreateColumn: line third for: table.
+	column := self ensureCreateColumn: line third in: table.
 	foreignKey := self
-		              createForeignIfRequired: table
-		              for: column
-		              basedOn: (line at: 7)
-		              and: (line at: 8).
-	foreignKey ifNotNil: [ 
+		              ensureCreateForeignKey: (line at: 7)
+		              in: table
+		              column: column.
+	foreignKey ifNotNil: [
 		| foreignTableTargetName |
 		foreignTableTargetName := ((line at: 7) substrings: '_') last.
 		model asOrderedCollection
-			detect: [ :el | 
-				(el isKindOf: FamixSQLTable) and: [ 
+			detect: [ :el |
+				(el isKindOf: FamixSQLTable) and: [
 					el name = foreignTableTargetName ] ]
-			ifOne: [ :targetTable | 
+			ifOne: [ :targetTable |
 				| foreignColumnTargetName |
 				foreignColumnTargetName := line at: 8.
 				targetTable columns
 					detect: [ :el | el name = foreignColumnTargetName ]
-					ifOne: [ :targetColumn | |columnReference |  columnReference := FamixSQLColumnReference new.
+					ifOne: [ :targetColumn |
+						| columnReference |
+						columnReference := FamixSQLColumnReference new.
 						columnReference column: targetColumn.
-						foreignKey addForeignKeyColumnReference: columnReference.
-						
-						 ] ] ] 
+						foreignKey addForeignKeyColumnReference: columnReference ] ] ]
 ]
 
 { #category : #accessing }

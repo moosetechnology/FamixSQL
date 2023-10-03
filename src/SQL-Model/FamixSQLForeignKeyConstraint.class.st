@@ -1,8 +1,8 @@
 Class {
 	#name : #FamixSQLForeignKeyConstraint,
-	#superclass : #FamixSQLConstraint,
+	#superclass : #FamixSQLTableConstraint,
 	#instVars : [
-		'#foreignKeyColumnReferences => FMMany type: #FamixSQLColumnReference opposite: #foreignKeySource'
+		'#foreignColumnReference => FMOne type: #FamixSQLForeignColumnReference opposite: #foreignKeyConstraint'
 	],
 	#category : #'SQL-Model-Entities'
 }
@@ -10,31 +10,24 @@ Class {
 { #category : #meta }
 FamixSQLForeignKeyConstraint class >> annotation [
 
-	<FMClass: #ForeignKeyConstraint super: #FamixSQLConstraint>
+	<FMClass: #ForeignKeyConstraint super: #FamixSQLTableConstraint>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
-]
-
-{ #category : #adding }
-FamixSQLForeignKeyConstraint >> addForeignKeyColumnReference: anObject [
-	<generated>
-	^ self foreignKeyColumnReferences add: anObject
+	^ self
 ]
 
 { #category : #accessing }
-FamixSQLForeignKeyConstraint >> foreignKeyColumnReferences [
-	"Relation named: #foreignKeyColumnReferences type: #FamixSQLColumnReference opposite: #foreignKeySource"
+FamixSQLForeignKeyConstraint >> foreignColumnReference [
+	"Relation named: #foreignColumnReference type: #FamixSQLForeignColumnReference opposite: #foreignKeyConstraint"
 
 	<generated>
 	<derived>
-	<target>
-	^ foreignKeyColumnReferences
+	^ foreignColumnReference
 ]
 
 { #category : #accessing }
-FamixSQLForeignKeyConstraint >> foreignKeyColumnReferences: anObject [
+FamixSQLForeignKeyConstraint >> foreignColumnReference: anObject [
 
 	<generated>
-	foreignKeyColumnReferences value: anObject
+	foreignColumnReference := anObject
 ]

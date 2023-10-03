@@ -3,7 +3,7 @@ I am a foreign table, that is to say, my data source is not inside the database.
 "
 Class {
 	#name : #FmxSQLQForeignTable,
-	#superclass : #FamixSQLTable,
+	#superclass : #AnObsoleteFamixSQLTable,
 	#category : #'FamixSQLQuery-Model-Entities'
 }
 

@@ -1,7 +1,7 @@
 Trait {
 	#name : #FamixSQLTWithColumnReference,
 	#instVars : [
-		'#columnReferences => FMMany type: #FamixSQLColumnReference opposite: #source'
+		'#columnReferences => FMMany type: #FamixSQLTColumnReference opposite: #referencer'
 	],
 	#category : #'SQL-Model-Traits'
 }
@@ -12,7 +12,7 @@ FamixSQLTWithColumnReference classSide >> annotation [
 	<FMClass: #TWithColumnReference super: #Object>
 	<package: #'SQL-Model'>
 	<generated>
-	^self
+	^ self
 ]
 
 { #category : #adding }
@@ -23,11 +23,10 @@ FamixSQLTWithColumnReference >> addColumnReference: anObject [
 
 { #category : #accessing }
 FamixSQLTWithColumnReference >> columnReferences [
-	"Relation named: #columnReferences type: #FamixSQLColumnReference opposite: #source"
+	"Relation named: #columnReferences type: #FamixSQLTColumnReference opposite: #referencer"
 
 	<generated>
 	<derived>
-	<target>
 	^ columnReferences
 ]
 

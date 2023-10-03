@@ -4,8 +4,8 @@ I am a returning clause
 Class {
 	#name : #FmxSQLQReturningClause,
 	#superclass : #FmxSQLQClause,
-	#traits : 'FamixSQLTWithColumnReference + FamixTWithAccesses + FamixTWithInvocations + FmxSQLQTWithReferencesGroupReference',
-	#classTraits : 'FamixSQLTWithColumnReference classTrait + FamixTWithAccesses classTrait + FamixTWithInvocations classTrait + FmxSQLQTWithReferencesGroupReference classTrait',
+	#traits : 'FamixTWithAccesses + FamixTWithInvocations + FmxSQLQTWithReferencesGroupReference',
+	#classTraits : 'FamixTWithAccesses classTrait + FamixTWithInvocations classTrait + FmxSQLQTWithReferencesGroupReference classTrait',
 	#category : #'FamixSQLQuery-Model-Entities'
 }
 

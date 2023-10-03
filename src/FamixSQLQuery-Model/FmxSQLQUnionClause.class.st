@@ -4,8 +4,8 @@ I am an union clause
 Class {
 	#name : #FmxSQLQUnionClause,
 	#superclass : #FmxSQLQClause,
-	#traits : 'FamixSQLTWithNamespaceReference + FamixSQLTWithTableReference + FmxSQLQTWithDerivedTableReference + FmxSQLQTWithViewReference',
-	#classTraits : 'FamixSQLTWithNamespaceReference classTrait + FamixSQLTWithTableReference classTrait + FmxSQLQTWithDerivedTableReference classTrait + FmxSQLQTWithViewReference classTrait',
+	#traits : 'FmxSQLQTWithDerivedTableReference + FmxSQLQTWithViewReference',
+	#classTraits : 'FmxSQLQTWithDerivedTableReference classTrait + FmxSQLQTWithViewReference classTrait',
 	#category : #'FamixSQLQuery-Model-Entities'
 }
 
