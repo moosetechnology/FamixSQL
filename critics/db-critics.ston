@@ -1,1 +1,36 @@
-FamixCBContext {	#contextBlock : '[ :collection | \r\t  collection select: [ :el | \r\t\t  el isKindOf: FamixSQLForeignKeyConstraint ] ]',	#summary : '',	#name : 'ForeignKey'}FamixCBCondition {	#query : '[ :entity | \r\t  entity foreignKeyColumnReferences anyOne column isPrimaryKeyColumn\r\t\t  not ]',	#severity : Class [ #SeverityHint ],	#summary : ' Foreign key referencing a non primary key. Uniqueness of the reference is not guaranteed and leads to semantic errors. ',	#name : 'Foreign key referencing a non primary key'}FamixCBContext {	#contextBlock : '[ :collection | \r\t  collection select: [ :el | el isKindOf: FamixSQLTable ] ]',	#summary : '',	#name : 'Table'}FamixCBCondition {	#query : '[ :entity | \r\t  entity columns noneSatisfy: [ :column | column isPrimaryKeyColumn ] ]',	#severity : Class [ #SeverityWarning ],	#summary : 'A table should always have a primary key',	#name : 'Table without primary key'}FamixCBCondition {	#query : '[ :entity | entity columns size >= 15 ]',	#severity : Class [ #SeverityHint ],	#summary : 'Too many columns in a table may be an illustration that the table has several concerns and should be decomposed.',	#name : 'Too many columns'}FamixCBCondition {	#query : '[ :table | \r\t  table columns noneSatisfy: [ :column | \r\t\t  column isForeignKeyColumn or: [ column hasForeignKeyReference ] ] ]',	#severity : Class [ #SeverityHint ],	#summary : 'A table that is referenced by no entity and does not use any table cannot be accessed through natural join (based on foreign keys). It is certainly not used, or with other criteria that foreign keys what can lead to semantic errors.',	#name : 'Isolated table'}OrderedCollection [	0,	1,	0,	3,	3,	3]
+FamixCBContext {
+	#contextBlock : '[ :collection |\r\t  collection select: [ :el | \r\t\t  el isKindOf: FamixSQLForeignKeyConstraint ] ]',
+	#summary : '',
+	#name : 'ForeignKey'
+}FamixCBCondition {
+	#query : '(FQSelectScriptQuery script: [ :entity |\r\tentity foreignColumnReference primaryKeyColumn isPrimaryKeyColumn\r\t\tnot ])',
+	#severity : Class [ #FamixCBHintSeverity ],
+	#summary : ' Foreign key referencing a non primary key. Uniqueness of the reference is not guaranteed and leads to semantic errors. ',
+	#name : 'Foreign key referencing a non primary key'
+}FamixCBContext {
+	#contextBlock : '[ :collection |\r\t  collection select: [ :el | el isKindOf: FamixSQLTable ] ]',
+	#summary : '',
+	#name : 'Table'
+}FamixCBCondition {
+	#query : '(FQSelectScriptQuery script: [ :entity |\r\tentity columns noneSatisfy: [ :column | column isPrimaryKeyColumn ] ])',
+	#severity : Class [ #FamixCBWarningSeverity ],
+	#summary : 'A table should always have a primary key',
+	#name : 'Table without primary key'
+}FamixCBCondition {
+	#query : '(FQSelectScriptQuery script: [ :entity |\r\tentity columns size >= 15 ])',
+	#severity : Class [ #FamixCBHintSeverity ],
+	#summary : 'Too many columns in a table may be an illustration that the table has several concerns and should be decomposed.',
+	#name : 'Too many columns'
+}FamixCBCondition {
+	#query : '(FQSelectScriptQuery script: [ :table |\r\ttable columns noneSatisfy: [ :column |\r\t\tcolumn isForeignKeyColumn or: [ column hasForeignKeyReference ] ] ])',
+	#severity : Class [ #FamixCBHintSeverity ],
+	#summary : 'A table that is referenced by no entity and does not use any table cannot be accessed through natural join (based on foreign keys). It is certainly not used, or with other criteria that foreign keys what can lead to semantic errors.',
+	#name : 'Isolated table'
+}OrderedCollection [
+	0,
+	1,
+	0,
+	3,
+	3,
+	3
+]
