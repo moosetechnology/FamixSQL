@@ -85,8 +85,7 @@ FamixSQLStructuralGenerator >> defineClassRelations [
 
 	(foreignColumnReference property: #foreignKeyConstraint)
 		source
-		*- (foreigneKeyConstraint property: #foreignColumnReference).
-		"should be a oneToOne relation, but breaks the generation of the meta-model"
+		- (foreigneKeyConstraint property: #foreignColumnReference).
 
 	(foreignColumnReference property: #primaryKeyColumn)
 		target

@@ -71,9 +71,10 @@ FamixSQLODBCImporter >> ensureCreateForeignKey: foreignKey for: table [
 	primaryKeyColumn := self
 		ensureCreateColumn: primaryKeyColumnName in: primaryKeyTable.
 
-	columnReference := FamixSQLColumnReference new.
-	columnReference column: primaryKeyColumn.
-	foreignKeyConstraint addForeignColumnReference: columnReference.
+	columnReference := self model newForeignColumnReference.
+	columnReference primaryKeyColumn: primaryKeyColumn.
+
+	foreignKeyConstraint foreignColumnReference: columnReference.
 	
 	^foreignKeyConstraint 
 ]
