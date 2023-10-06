@@ -18,6 +18,15 @@ BaselineOfFamixSQL >> baseline: spec [
 ]
 
 { #category : #baselines }
+BaselineOfFamixSQL >> customProjectAttributes [
+
+	^ RPackageOrganizer default packages
+		  detect: [ :package | package name = 'BaselineOfFamix' ]
+		  ifFound: [ #(  ) ]
+		  ifNone: [ #( #NeedsMoose ) ]
+]
+
+{ #category : #baselines }
 BaselineOfFamixSQL >> defineDependencies: spec [
 
 	spec
@@ -55,13 +64,14 @@ BaselineOfFamixSQL >> definePackages: spec [
 { #category : #baselines }
 BaselineOfFamixSQL >> famix: spec [
 
-	| famixVersion |
-	famixVersion := 'development'.
-	spec
-		for: { 'pharo10.x' }
-		do: [ famixVersion := 'v1.0.6' "Famix version for Moose 10" ].
-		
-	spec baseline: 'Famix' with: [
-		spec repository:
-			('github://moosetechnology/Famix:{1}/src' format: { famixVersion }) ]
+	spec for: #NeedsMoose do: [
+		| famixVersion |
+		famixVersion := 'development'.
+		spec
+			for: { 'pharo10.x' }
+			do: [ famixVersion := 'v1.0.6' "Famix version for Moose 10" ].
+
+		spec baseline: 'Famix' with: [
+			spec repository:
+				('github://moosetechnology/Famix:{1}/src' format: { famixVersion }) ] ]
 ]
