@@ -22,7 +22,7 @@ Metacello new
 
 UML generated with [plantUML](https://plantuml.com) using the [FamixUMLDocumentor](https://github.com/moosetechnology/Famix/tree/development/src/Famix-UMLDocumentor) (on 2023/10/01)
 
-![image](https://github.com/moosetechnology/FamixSQL/assets/14889146/41a22c0f-8327-472b-a939-61e9d533b10d)
+![image](./famixSQL-231009.svg)
 
 
 ## Usages
