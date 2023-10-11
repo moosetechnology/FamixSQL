@@ -1,0 +1,69 @@
+name: CI-Moose10
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the development branch
+on:
+  push:
+    branches: 
+      - main
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_NAME: ${{ matrix.smalltalk }}
+    strategy:
+      matrix:
+        smalltalk: [ Moose64-11 ]
+    name: ${{ matrix.smalltalk }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install odbc
+        run: sudo apt-get install -y unixodbc unixodbc-dev 
+      - uses: hpi-swa/setup-smalltalkCI@v1
+        with:
+          smalltalk-image: ${{ matrix.smalltalk }}
+
+      - run: smalltalkci -s ${{ matrix.smalltalk }}
+        shell: bash
+        timeout-minutes: 15
+      
+      # Build schema
+      - name: Build meta-model planuml image
+        run: |
+          $SMALLTALK_CI_VM  $SMALLTALK_CI_IMAGE st ./ci/generateUML.st
+
+      - name: Generate FamixSQL PNG Diagrams
+        uses: cloudbees/plantuml-github-action@master
+        with:
+          args: -v -tpng famixsql.puml
+
+      - name: Move artifact
+        run: |
+          mkdir doc-uml
+          mv *.png doc-uml
+      
+      - name: Init new repo in dist folder and commit generated files
+        run: |
+          cd doc-uml/
+          git init
+          git add -A
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m 'update doc'
+          
+      # Careful, this can kill your project
+      - name: Force push to destination branch
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          # Token for the repo. Can be passed in using $\{{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
+          # Destination branch to push changes
+          branch: main/doc
+          # We have to push from the folder where files were generated.
+          # Same were the new repo was initialized in the previous step
+          directory: ./doc-uml
