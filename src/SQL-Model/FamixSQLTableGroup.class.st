@@ -20,19 +20,6 @@ FamixSQLTableGroup class >> metamodel [
 	^ FamixSQLModel metamodel
 ]
 
-{ #category : #'as yet unclassified' }
-FamixSQLTableGroup >> inspectionTable: aBuilder [
-
-	<inspectorPresentationOrder: -1 title: 'MCD Tables'>
-	^ SpRoassal3InspectorPresenter new
-		  canvas: (SQLRSTableGroupVizualisation new
-				   collapseAll;
-				   sourceGroup: self;
-				   build;
-				   canvas);
-		  yourself
-]
-
 { #category : #testing }
 FamixSQLTableGroup >> isAssociation [
 
