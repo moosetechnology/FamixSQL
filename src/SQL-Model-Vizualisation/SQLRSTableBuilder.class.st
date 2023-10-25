@@ -10,8 +10,12 @@ Class {
 { #category : #hooks }
 SQLRSTableBuilder >> columnFor: column [
 
+	| columnName |
+	columnName := column name.
+	column isPrimaryKeyColumn ifTrue: [ columnName := '!' , columnName ].
+	column isForeignKeyColumn ifTrue: [ columnName := '#' , columnName ].
 	^ HNode new
-		  name: column name;
+		  name: columnName;
 		  rawModel: column;
 		  yourself
 ]

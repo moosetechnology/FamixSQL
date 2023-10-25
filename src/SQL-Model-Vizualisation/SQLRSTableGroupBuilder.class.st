@@ -1,6 +1,6 @@
 Class {
-	#name : #SQLRSTableGroupVizualisation,
-	#superclass : #Object,
+	#name : #SQLRSTableGroupBuilder,
+	#superclass : #HSimpleVisualizationBuilder,
 	#instVars : [
 		'tableBuilder',
 		'canvas',
@@ -11,16 +11,16 @@ Class {
 }
 
 { #category : #accessing }
-SQLRSTableGroupVizualisation >> build [
+SQLRSTableGroupBuilder >> build [
 
-	| tablesNode columnNodes rootNode |
-	tablesNode := self sourceGroup collect: [ :table | 
+	| tablesNode columnNodes |
+	tablesNode := self sourceGroup collect: [ :table |
 		              | node |
 		              node := self tableBuilder shapeFor: table.
 		              self shoudBeCollapsed ifTrue: [ node collapse ].
 		              node ].
 	columnNodes := tablesNode flatCollect: #children.
-	columnNodes do: [ :columnNode | 
+	columnNodes do: [ :columnNode |
 		self extractAssociationFor: columnNode with: columnNodes ].
 
 	rootNode := HNode new.
@@ -30,32 +30,17 @@ SQLRSTableGroupVizualisation >> build [
 			 length: 80;
 			 yourself).
 
-	canvas := HSimpleVisualizationBuilder new
-		          nodeStyler: SQLNodeStyler new;
-		          rootNode: rootNode;
-		          build.
-	canvas zoomToFit
+	self rootNode: rootNode.
+	super build
 ]
 
 { #category : #accessing }
-SQLRSTableGroupVizualisation >> canvas [
-
-	^ canvas
-]
-
-{ #category : #accessing }
-SQLRSTableGroupVizualisation >> canvas: anObject [
-
-	canvas := anObject
-]
-
-{ #category : #accessing }
-SQLRSTableGroupVizualisation >> collapseAll [
+SQLRSTableGroupBuilder >> collapseAll [
 	shoudBeCollapsed := true
 ]
 
 { #category : #accessing }
-SQLRSTableGroupVizualisation >> extractAssociationFor: nodeColumn with: allNodes [
+SQLRSTableGroupBuilder >> extractAssociationFor: nodeColumn with: allNodes [
 
 	| ref |
 	ref := (nodeColumn rawModel incomingForeignKeyReferences
@@ -68,7 +53,7 @@ SQLRSTableGroupVizualisation >> extractAssociationFor: nodeColumn with: allNodes
 ]
 
 { #category : #initialization }
-SQLRSTableGroupVizualisation >> initialize [
+SQLRSTableGroupBuilder >> initialize [
 
 	super initialize.
 	tableBuilder := SQLRSTableBuilder new.
@@ -76,37 +61,37 @@ SQLRSTableGroupVizualisation >> initialize [
 ]
 
 { #category : #accessing }
-SQLRSTableGroupVizualisation >> shoudBeCollapsed [
+SQLRSTableGroupBuilder >> shoudBeCollapsed [
 
 	^ shoudBeCollapsed value
 ]
 
 { #category : #accessing }
-SQLRSTableGroupVizualisation >> shoudBeCollapsed: anObject [
+SQLRSTableGroupBuilder >> shoudBeCollapsed: anObject [
 
 	shoudBeCollapsed := anObject
 ]
 
 { #category : #accessing }
-SQLRSTableGroupVizualisation >> sourceGroup [
+SQLRSTableGroupBuilder >> sourceGroup [
 
 	^ sourceGroup
 ]
 
 { #category : #accessing }
-SQLRSTableGroupVizualisation >> sourceGroup: anObject [
+SQLRSTableGroupBuilder >> sourceGroup: anObject [
 
 	sourceGroup := anObject
 ]
 
 { #category : #accessing }
-SQLRSTableGroupVizualisation >> tableBuilder [
+SQLRSTableGroupBuilder >> tableBuilder [
 
 	^ tableBuilder
 ]
 
 { #category : #accessing }
-SQLRSTableGroupVizualisation >> tableBuilder: anObject [
+SQLRSTableGroupBuilder >> tableBuilder: anObject [
 
 	tableBuilder := anObject
 ]
