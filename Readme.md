@@ -61,10 +61,10 @@ A Roassal3 visualisation of the tables and their link is also available in this 
 tables := ((model allWithType: FamixSQLTable) first: 10) asMooseSpecializedGroup.
 
 (SQLRSTableGroupBuilder new
-				   sourceGroup: tables;
-					collapseAll;
-				   build;
-				   canvas) open.
+  sourceGroup: tables;
+  collapseAll;
+  build;
+  canvas) open.
 ```
 
 ### Common request
