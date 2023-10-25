@@ -58,12 +58,10 @@ SQLRSTableGroupVizualisation >> collapseAll [
 SQLRSTableGroupVizualisation >> extractAssociationFor: nodeColumn with: allNodes [
 
 	| ref |
-	ref := (nodeColumn rawModel references
-		        select: [ :reference | 
-			        reference source isKindOf: FamixSQLForeignKeyConstraint ]
-		        thenCollect: [ :foreignRef | 
-			        foreignRef source foreignKeyColumnReferences collect: [ 
-				        :columnReference | columnReference column ] ]) flattened.
+	ref := (nodeColumn rawModel incomingForeignKeyReferences
+					collect: [ :foreignRef |
+						foreignRef foreignKeyConstraint columnReferences collect: [ 
+				   			:columnReference | columnReference column ] ]) flattened.
 	nodeColumn dependenciesToNodes:
 		(allNodes select: [ :aColumnNode | 
 			 ref includes: aColumnNode rawModel ])
