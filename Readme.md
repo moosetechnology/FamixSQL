@@ -18,6 +18,10 @@ Metacello new
   load.
 ```
 
+## Main documentation
+
+Please read first the [main documentation here](https://modularmoose.org/moose-wiki/Users/famix-sql/getting-started-with-famixsql)
+
 ## UML
 
 UML generated with [plantUML](https://plantuml.com) using the [FamixUMLDocumentor](https://github.com/moosetechnology/Famix/tree/development/src/Famix-UMLDocumentor) (on 2023/10/01)
