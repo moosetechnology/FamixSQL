@@ -52,7 +52,7 @@ model.
 
 ### Analyse the database
 
-Analyse of the database can be performed using [Moose Critics](https://modularmoose.org/2022/08/08/moosecritics.html).
+Analyse of the database can be performed using [Moose Critics](https://modularmoose.org/posts/2022-08-08-moosecritics).
 A first set of rule is available in [this repo](./critics/).
 
 A Roassal3 visualisation of the tables and their link is also available in this package and can be opened by executing the folowing script:
