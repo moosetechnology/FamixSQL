@@ -43,12 +43,13 @@ SQLRSTableGroupBuilder >> collapseAll [
 SQLRSTableGroupBuilder >> extractAssociationFor: nodeColumn with: allNodes [
 
 	| ref |
-	ref := (nodeColumn rawModel incomingForeignKeyReferences
-					collect: [ :foreignRef |
-						foreignRef foreignKeyConstraint columnReferences collect: [ 
-				   			:columnReference | columnReference column ] ]) flattened.
+	ref := (nodeColumn rawModel incomingForeignKeyReferences collect: [
+		        :foreignRef |
+		        foreignRef foreignKeyConstraint ifNotNil: [ :fkConstraint |
+			        fkConstraint columnReferences collect: [ :columnReference |
+				        columnReference column ] ] ]) flattened.
 	nodeColumn dependenciesToNodes:
-		(allNodes select: [ :aColumnNode | 
+		(allNodes select: [ :aColumnNode |
 			 ref includes: aColumnNode rawModel ])
 ]
 
