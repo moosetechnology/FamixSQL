@@ -213,6 +213,13 @@ FamixSQLTEntityCreator >> newNamespaceNamed: aName [
 ]
 
 { #category : #'entity creation' }
+FamixSQLTEntityCreator >> newNamespaceReference [
+
+	<generated>
+	^ self add: FamixSQLNamespaceReference new
+]
+
+{ #category : #'entity creation' }
 FamixSQLTEntityCreator >> newNewLocalVariable [
 
 	<generated>
@@ -269,10 +276,24 @@ FamixSQLTEntityCreator >> newPrimaryKeyConstraint [
 ]
 
 { #category : #'entity creation' }
+FamixSQLTEntityCreator >> newReference [
+
+	<generated>
+	^ self add: FamixSQLReference new
+]
+
+{ #category : #'entity creation' }
 FamixSQLTEntityCreator >> newReturningClause [
 
 	<generated>
 	^ self add: FamixSQLReturningClause new
+]
+
+{ #category : #'entity creation' }
+FamixSQLTEntityCreator >> newSchema [
+
+	<generated>
+	^ self add: FamixSQLSchema new
 ]
 
 { #category : #'entity creation' }
@@ -336,6 +357,13 @@ FamixSQLTEntityCreator >> newTableConstraint [
 
 	<generated>
 	^ self add: FamixSQLTableConstraint new
+]
+
+{ #category : #'entity creation' }
+FamixSQLTEntityCreator >> newTableReference [
+
+	<generated>
+	^ self add: FamixSQLTableReference new
 ]
 
 { #category : #'entity creation' }

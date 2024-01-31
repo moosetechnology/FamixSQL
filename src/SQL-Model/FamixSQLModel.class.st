@@ -18,3 +18,10 @@ FamixSQLModel class >> annotation [
 	<package: #'SQL-Model'>
 	<generated>
 ]
+
+{ #category : #accessing }
+FamixSQLModel class >> importingContextClass [
+
+	<generated>
+	^ FamixSQLImportingContext
+]
