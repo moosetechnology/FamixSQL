@@ -42,6 +42,13 @@ FamixSQLTableGroup >> isNamespace [
 ]
 
 { #category : #testing }
+FamixSQLTableGroup >> isQueryable [
+
+	<generated>
+	^ false
+]
+
+{ #category : #testing }
 FamixSQLTableGroup >> isStoredProcedure [
 
 	<generated>

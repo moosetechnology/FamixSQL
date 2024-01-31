@@ -1,3 +1,21 @@
+"
+## Relations
+======================
+
+### Parents
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `columnsContainer` | `FamixSQLTColumn` | `columns` | `FamixSQLTColumnContainer` | |
+
+### Incoming dependencies
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `incomingForeignKeyReferences` | `FamixSQLTColumn` | `primaryKeyColumn` | `FamixSQLForeignColumnReference` | |
+| `incomingReferences` | `FamixSQLTColumn` | `column` | `FamixSQLTColumnReference` | |
+
+
+
+"
 Trait {
 	#name : #FamixSQLTColumn,
 	#instVars : [

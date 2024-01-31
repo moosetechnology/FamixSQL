@@ -1,3 +1,15 @@
+"
+## Relations
+======================
+
+### Outgoing dependencies
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `references` | `FamixSQLTWithColumnContainerReference` | `referencer` | `FamixSQLTColumnContainerReference` | |
+
+
+
+"
 Trait {
 	#name : #FamixSQLTWithColumnContainerReference,
 	#instVars : [

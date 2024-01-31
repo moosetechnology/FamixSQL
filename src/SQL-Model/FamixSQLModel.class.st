@@ -18,3 +18,16 @@ FamixSQLModel class >> annotation [
 	<package: #'SQL-Model'>
 	<generated>
 ]
+
+{ #category : #testing }
+FamixSQLModel class >> canBeImportedFromFile [
+	<generated>
+	^true
+]
+
+{ #category : #accessing }
+FamixSQLModel class >> importingContextClass [
+
+	<generated>
+	^ FamixSQLImportingContext
+]

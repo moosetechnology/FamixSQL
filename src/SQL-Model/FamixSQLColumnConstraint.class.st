@@ -1,5 +1,16 @@
 "
 I am an abstract class for constraints on Columns
+
+## Relations
+======================
+
+### Outgoing dependencies
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `columnReferences` | `FamixSQLTWithColumnReference` | `referencer` | `FamixSQLTColumnReference` | |
+
+
+
 "
 Class {
 	#name : #FamixSQLColumnConstraint,

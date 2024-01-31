@@ -1,5 +1,7 @@
 "
 I am a LIMIT clause in a query
+
+
 "
 Class {
 	#name : #FamixSQLLimitClause,

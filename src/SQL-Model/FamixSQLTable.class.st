@@ -1,3 +1,30 @@
+"
+## Relations
+======================
+
+### Parents
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `parentNamespace` | `FamixSQLTable` | `table` | `FamixSQLNamespace` | |
+
+### Children
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `columns` | `FamixSQLTColumnContainer` | `columnsContainer` | `FamixSQLTColumn` | |
+
+### Incoming dependencies
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `incomingReferences` | `FamixSQLTColumnContainer` | `columnContainer` | `FamixSQLTColumnContainerReference` | |
+
+### Other
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `constraints` | `FamixSQLTable` | `table` | `FamixSQLTableConstraint` | |
+
+
+
+"
 Class {
 	#name : #FamixSQLTable,
 	#superclass : #FamixSQLStructuralEntity,

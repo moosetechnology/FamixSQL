@@ -1,5 +1,7 @@
 "
 I am a VALUES query.
+
+
 "
 Class {
 	#name : #FamixSQLValuesQuery,

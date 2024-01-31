@@ -1,3 +1,15 @@
+"
+## Relations
+======================
+
+### Outgoing dependencies
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `foreignColumnReference` | `FamixSQLForeignKeyConstraint` | `foreignKeyConstraint` | `FamixSQLForeignColumnReference` | |
+
+
+
+"
 Class {
 	#name : #FamixSQLForeignKeyConstraint,
 	#superclass : #FamixSQLTableConstraint,

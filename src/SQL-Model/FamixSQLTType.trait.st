@@ -1,3 +1,15 @@
+"
+## Relations
+======================
+
+### Incoming dependencies
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `incomingReferences` | `FamixSQLTType` | `type` | `FamixSQLTTypeReference` | |
+
+
+
+"
 Trait {
 	#name : #FamixSQLTType,
 	#instVars : [

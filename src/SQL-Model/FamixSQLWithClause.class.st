@@ -1,5 +1,7 @@
 "
 I am a WITH clause in a query
+
+
 "
 Class {
 	#name : #FamixSQLWithClause,

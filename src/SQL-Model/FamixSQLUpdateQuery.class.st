@@ -1,5 +1,7 @@
 "
 I am an UPDATE query.
+
+
 "
 Class {
 	#name : #FamixSQLUpdateQuery,

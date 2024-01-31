@@ -1,3 +1,20 @@
+"
+## Relations
+======================
+
+### Association source
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `referencer` | `FamixSQLTColumnContainerReference` | `references` | `FamixSQLTWithColumnContainerReference` | |
+
+### Association target
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `columnContainer` | `FamixSQLTColumnContainerReference` | `incomingReferences` | `FamixSQLTColumnContainer` | |
+
+
+
+"
 Class {
 	#name : #FamixSQLColumnContainerReference,
 	#superclass : #FamixSQLEntity,

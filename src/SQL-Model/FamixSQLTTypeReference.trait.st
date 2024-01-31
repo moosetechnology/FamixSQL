@@ -1,3 +1,20 @@
+"
+## Relations
+======================
+
+### Association source
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `referencer` | `FamixSQLTTypeReference` | `typeReferences` | `FamixSQLTWithTypeReference` | |
+
+### Association target
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `type` | `FamixSQLTTypeReference` | `incomingReferences` | `FamixSQLTType` | |
+
+
+
+"
 Trait {
 	#name : #FamixSQLTTypeReference,
 	#instVars : [

@@ -1,5 +1,16 @@
 "
 I am an EXCEPT clause in a query
+
+## Relations
+======================
+
+### Outgoing dependencies
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `references` | `FamixSQLTWithColumnContainerReference` | `referencer` | `FamixSQLTColumnContainerReference` | |
+
+
+
 "
 Class {
 	#name : #FamixSQLExceptClause,

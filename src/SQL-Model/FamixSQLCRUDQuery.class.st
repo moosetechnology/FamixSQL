@@ -10,6 +10,8 @@ The Update query is the UPDATE query in SQL.
 The Delete query is the DELETE query in SQL.
 
 My subclasses represent these four queries.
+
+
 "
 Class {
 	#name : #FamixSQLCRUDQuery,
