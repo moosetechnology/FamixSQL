@@ -1,5 +1,7 @@
 "
 I am an INSERT query.
+
+
 "
 Class {
 	#name : #FamixSQLInsertQuery,

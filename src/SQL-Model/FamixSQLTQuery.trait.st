@@ -1,5 +1,16 @@
 "
 I represent a CRUD query
+
+## Relations
+======================
+
+### Parents
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `containerEntity` | `FamixSQLTQuery` | `queries` | `FamixSQLTQueryContainer` | |
+
+
+
 "
 Trait {
 	#name : #FamixSQLTQuery,

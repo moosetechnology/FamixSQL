@@ -1,5 +1,7 @@
 "
 I am a JOIN clause in a query
+
+
 "
 Class {
 	#name : #FamixSQLJoinClause,

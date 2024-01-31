@@ -1,5 +1,16 @@
 "
 I am an abstract class for constraints on Tables
+
+## Relations
+======================
+
+### Other
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `table` | `FamixSQLTableConstraint` | `constraints` | `FamixSQLTable` | |
+
+
+
 "
 Class {
 	#name : #FamixSQLTableConstraint,

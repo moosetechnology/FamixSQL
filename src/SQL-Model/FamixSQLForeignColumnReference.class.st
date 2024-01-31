@@ -1,3 +1,20 @@
+"
+## Relations
+======================
+
+### Association source
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `foreignKeyConstraint` | `FamixSQLForeignColumnReference` | `foreignColumnReference` | `FamixSQLForeignKeyConstraint` | |
+
+### Association target
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `primaryKeyColumn` | `FamixSQLForeignColumnReference` | `incomingForeignKeyReferences` | `FamixSQLTColumn` | |
+
+
+
+"
 Class {
 	#name : #FamixSQLForeignColumnReference,
 	#superclass : #FamixSQLEntity,

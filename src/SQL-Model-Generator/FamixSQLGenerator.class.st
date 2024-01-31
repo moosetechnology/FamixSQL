@@ -389,6 +389,14 @@ FamixSQLGenerator >> localVariableComment [
 	^ 'I am a local variable of a stored procedure. I have a type.'
 ]
 
+{ #category : #definition }
+FamixSQLGenerator >> newBuilder [
+
+	^ super newBuilder
+		  withFileImport;
+		  yourself
+]
+
 { #category : #comments }
 FamixSQLGenerator >> newLocalVariableComment [
 	^ 'I model the special NEW local variable accessible from inside trigger stored procedure.'

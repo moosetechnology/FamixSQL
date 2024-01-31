@@ -1,5 +1,7 @@
 "
 I am an abstract class for all clauses in queries (FROM/WHERE/GROUPBY/HAVING/...
+
+
 "
 Class {
 	#name : #FamixSQLClause,

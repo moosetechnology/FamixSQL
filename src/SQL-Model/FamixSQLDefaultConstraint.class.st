@@ -1,5 +1,7 @@
 "
 I represent a DEFAULT constraint on a column
+
+
 "
 Class {
 	#name : #FamixSQLDefaultConstraint,

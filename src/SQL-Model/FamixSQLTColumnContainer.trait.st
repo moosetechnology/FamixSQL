@@ -1,5 +1,21 @@
 "
 I am an abstract super class for entities that contain columns. Two of my well-known subclasses are the table and the view.
+
+## Relations
+======================
+
+### Children
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `columns` | `FamixSQLTColumnContainer` | `columnsContainer` | `FamixSQLTColumn` | |
+
+### Incoming dependencies
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `incomingReferences` | `FamixSQLTColumnContainer` | `columnContainer` | `FamixSQLTColumnContainerReference` | |
+
+
+
 "
 Trait {
 	#name : #FamixSQLTColumnContainer,

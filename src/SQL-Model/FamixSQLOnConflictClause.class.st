@@ -1,5 +1,7 @@
 "
 I am a ON CONFLICT clause in a query
+
+
 "
 Class {
 	#name : #FamixSQLOnConflictClause,

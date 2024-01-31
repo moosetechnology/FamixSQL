@@ -1,5 +1,7 @@
 "
 I am an DELETE query.
+
+
 "
 Class {
 	#name : #FamixSQLDeleteQuery,

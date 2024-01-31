@@ -1,5 +1,17 @@
 "
 I am an INTO clause in a query
+
+## Relations
+======================
+
+### Outgoing dependencies
+| Relation | Origin | Opposite | Type | Comment |
+|---|
+| `columnReferences` | `FamixSQLTWithColumnReference` | `referencer` | `FamixSQLTColumnReference` | |
+| `references` | `FamixSQLTWithColumnContainerReference` | `referencer` | `FamixSQLTColumnContainerReference` | |
+
+
+
 "
 Class {
 	#name : #FamixSQLIntoClause,
