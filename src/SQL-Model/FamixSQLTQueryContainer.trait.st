@@ -13,14 +13,16 @@ I am an abstract super class for behavioural entities that can contain queries i
 
 "
 Trait {
-	#name : #FamixSQLTQueryContainer,
+	#name : 'FamixSQLTQueryContainer',
 	#instVars : [
 		'#queries => FMMany type: #FamixSQLTQuery opposite: #containerEntity'
 	],
-	#category : #'SQL-Model-Traits'
+	#category : 'SQL-Model-Traits',
+	#package : 'SQL-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLTQueryContainer classSide >> annotation [
 
 	<FMClass: #TQueryContainer super: #Object>
@@ -29,13 +31,13 @@ FamixSQLTQueryContainer classSide >> annotation [
 	^ self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FamixSQLTQueryContainer >> addQuery: anObject [
 	<generated>
 	^ self queries add: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTQueryContainer >> queries [
 	"Relation named: #queries type: #FamixSQLTQuery opposite: #containerEntity"
 
@@ -44,14 +46,14 @@ FamixSQLTQueryContainer >> queries [
 	^ queries
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTQueryContainer >> queries: anObject [
 
 	<generated>
 	queries value: anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FamixSQLTQueryContainer >> queriesGroup [
 	<generated>
 	<navigation: 'Queries'>

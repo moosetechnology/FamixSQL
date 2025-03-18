@@ -1,10 +1,12 @@
 Class {
-	#name : #FamixSQLEntity,
-	#superclass : #MooseEntity,
-	#category : #'SQL-Model-Entities'
+	#name : 'FamixSQLEntity',
+	#superclass : 'MooseEntity',
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLEntity class >> annotation [
 
 	<FMClass: #Entity super: #MooseEntity>
@@ -14,70 +16,70 @@ FamixSQLEntity class >> annotation [
 	^ self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLEntity class >> isAbstract [
 
 	<generated>
 	^ self == FamixSQLEntity
 ]
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLEntity class >> metamodel [
 
 	<generated>
 	^ FamixSQLModel metamodel
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLEntity >> isAssociation [
 
 	<generated>
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLEntity >> isLocalVariable [
 
 	<generated>
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLEntity >> isNamespace [
 
 	<generated>
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLEntity >> isQueryable [
 
 	<generated>
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLEntity >> isStoredProcedure [
 
 	<generated>
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLEntity >> isStructuralEntity [
 
 	<generated>
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLEntity >> isTriggerStoredProcedure [
 
 	<generated>
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLEntity >> isView [
 
 	<generated>

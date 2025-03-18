@@ -13,15 +13,17 @@ I am an abstract class for constraints on Tables
 
 "
 Class {
-	#name : #FamixSQLTableConstraint,
-	#superclass : #FamixSQLConstraint,
+	#name : 'FamixSQLTableConstraint',
+	#superclass : 'FamixSQLConstraint',
 	#instVars : [
 		'#table => FMOne type: #FamixSQLTable opposite: #constraints'
 	],
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLTableConstraint class >> annotation [
 
 	<FMClass: #TableConstraint super: #FamixSQLConstraint>
@@ -30,7 +32,7 @@ FamixSQLTableConstraint class >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTableConstraint >> table [
 	"Relation named: #table type: #FamixSQLTable opposite: #constraints"
 
@@ -38,7 +40,7 @@ FamixSQLTableConstraint >> table [
 	^ table
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTableConstraint >> table: anObject [
 
 	<generated>

@@ -1,10 +1,12 @@
 Class {
-	#name : #FamixSQLPrimaryKeyConstraint,
-	#superclass : #FamixSQLTableConstraint,
-	#category : #'SQL-Model-Entities'
+	#name : 'FamixSQLPrimaryKeyConstraint',
+	#superclass : 'FamixSQLTableConstraint',
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLPrimaryKeyConstraint class >> annotation [
 
 	<FMClass: #PrimaryKeyConstraint super: #FamixSQLTableConstraint>

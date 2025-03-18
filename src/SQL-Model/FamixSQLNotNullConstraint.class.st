@@ -4,12 +4,14 @@ I represent a NOT NULL constraint as defined in SQL standard.
 
 "
 Class {
-	#name : #FamixSQLNotNullConstraint,
-	#superclass : #FamixSQLColumnConstraint,
-	#category : #'SQL-Model-Entities'
+	#name : 'FamixSQLNotNullConstraint',
+	#superclass : 'FamixSQLColumnConstraint',
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLNotNullConstraint class >> annotation [
 
 	<FMClass: #NotNullConstraint super: #FamixSQLColumnConstraint>

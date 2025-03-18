@@ -4,12 +4,14 @@ I am an UPDATE query.
 
 "
 Class {
-	#name : #FamixSQLUpdateQuery,
-	#superclass : #FamixSQLCRUDQuery,
-	#category : #'SQL-Model-Entities'
+	#name : 'FamixSQLUpdateQuery',
+	#superclass : 'FamixSQLCRUDQuery',
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLUpdateQuery class >> annotation [
 
 	<FMClass: #UpdateQuery super: #FamixSQLCRUDQuery>

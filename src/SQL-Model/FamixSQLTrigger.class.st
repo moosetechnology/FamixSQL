@@ -26,17 +26,19 @@ I am a trigger. A trigger allows to define actions to performs when a specific e
 
 "
 Class {
-	#name : #FamixSQLTrigger,
-	#superclass : #FamixSQLBehaviouralEntity,
+	#name : 'FamixSQLTrigger',
+	#superclass : 'FamixSQLBehaviouralEntity',
 	#traits : 'FamixSQLTWithColumnContainerReference + FamixTNamespace',
 	#classTraits : 'FamixSQLTWithColumnContainerReference classTrait + FamixTNamespace classTrait',
 	#instVars : [
 		'#storedProcedure => FMOne type: #FamixSQLTriggerStoredProcedure opposite: #trigger'
 	],
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLTrigger class >> annotation [
 
 	<FMClass: #Trigger super: #FamixSQLBehaviouralEntity>
@@ -45,7 +47,7 @@ FamixSQLTrigger class >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTrigger >> storedProcedure [
 	"Relation named: #storedProcedure type: #FamixSQLTriggerStoredProcedure opposite: #trigger"
 
@@ -53,7 +55,7 @@ FamixSQLTrigger >> storedProcedure [
 	^ storedProcedure
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTrigger >> storedProcedure: anObject [
 
 	<generated>

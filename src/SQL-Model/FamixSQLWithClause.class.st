@@ -4,12 +4,14 @@ I am a WITH clause in a query
 
 "
 Class {
-	#name : #FamixSQLWithClause,
-	#superclass : #FamixSQLClause,
-	#category : #'SQL-Model-Entities'
+	#name : 'FamixSQLWithClause',
+	#superclass : 'FamixSQLClause',
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLWithClause class >> annotation [
 
 	<FMClass: #WithClause super: #FamixSQLClause>

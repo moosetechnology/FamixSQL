@@ -1,10 +1,12 @@
 Class {
-	#name : #FamixSQLTableGroup,
-	#superclass : #MooseSpecializedGroup,
-	#category : #'SQL-Model-Groups'
+	#name : 'FamixSQLTableGroup',
+	#superclass : 'MooseSpecializedGroup',
+	#category : 'SQL-Model-Groups',
+	#package : 'SQL-Model',
+	#tag : 'Groups'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLTableGroup class >> annotation [
 
 	<FMClass: #TableGroup super: #MooseSpecializedGroup>
@@ -13,63 +15,63 @@ FamixSQLTableGroup class >> annotation [
 	^ self
 ]
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLTableGroup class >> metamodel [
 
 	<generated>
 	^ FamixSQLModel metamodel
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLTableGroup >> isAssociation [
 
 	<generated>
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLTableGroup >> isLocalVariable [
 
 	<generated>
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLTableGroup >> isNamespace [
 
 	<generated>
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLTableGroup >> isQueryable [
 
 	<generated>
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLTableGroup >> isStoredProcedure [
 
 	<generated>
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLTableGroup >> isStructuralEntity [
 
 	<generated>
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLTableGroup >> isTriggerStoredProcedure [
 
 	<generated>
 	^ false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLTableGroup >> isView [
 
 	<generated>

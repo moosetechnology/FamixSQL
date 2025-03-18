@@ -11,15 +11,17 @@
 
 "
 Class {
-	#name : #FamixSQLForeignKeyConstraint,
-	#superclass : #FamixSQLTableConstraint,
+	#name : 'FamixSQLForeignKeyConstraint',
+	#superclass : 'FamixSQLTableConstraint',
 	#instVars : [
 		'#foreignColumnReference => FMOne type: #FamixSQLForeignColumnReference opposite: #foreignKeyConstraint'
 	],
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLForeignKeyConstraint class >> annotation [
 
 	<FMClass: #ForeignKeyConstraint super: #FamixSQLTableConstraint>
@@ -28,7 +30,7 @@ FamixSQLForeignKeyConstraint class >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLForeignKeyConstraint >> foreignColumnReference [
 	"Relation named: #foreignColumnReference type: #FamixSQLForeignColumnReference opposite: #foreignKeyConstraint"
 
@@ -37,7 +39,7 @@ FamixSQLForeignKeyConstraint >> foreignColumnReference [
 	^ foreignColumnReference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLForeignKeyConstraint >> foreignColumnReference: anObject [
 
 	<generated>

@@ -19,14 +19,16 @@ I am a derived table. A derived table is a temporary table created to store temp
 
 "
 Class {
-	#name : #FamixSQLDerivedTable,
-	#superclass : #FamixSQLBehaviouralEntity,
+	#name : 'FamixSQLDerivedTable',
+	#superclass : 'FamixSQLBehaviouralEntity',
 	#traits : 'FamixSQLTColumnContainer + FamixSQLTQueryContainer',
 	#classTraits : 'FamixSQLTColumnContainer classTrait + FamixSQLTQueryContainer classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLDerivedTable class >> annotation [
 
 	<FMClass: #DerivedTable super: #FamixSQLBehaviouralEntity>

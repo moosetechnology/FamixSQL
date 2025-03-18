@@ -4,12 +4,14 @@ I am a VALUES query.
 
 "
 Class {
-	#name : #FamixSQLValuesQuery,
-	#superclass : #FamixSQLCRUDQuery,
-	#category : #'SQL-Model-Entities'
+	#name : 'FamixSQLValuesQuery',
+	#superclass : 'FamixSQLCRUDQuery',
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLValuesQuery class >> annotation [
 
 	<FMClass: #ValuesQuery super: #FamixSQLCRUDQuery>

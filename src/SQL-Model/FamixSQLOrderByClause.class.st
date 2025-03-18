@@ -16,14 +16,16 @@ I am an ORDER BY clause in a query
 
 "
 Class {
-	#name : #FamixSQLOrderByClause,
-	#superclass : #FamixSQLClause,
+	#name : 'FamixSQLOrderByClause',
+	#superclass : 'FamixSQLClause',
 	#traits : 'FamixSQLTWithColumnContainerReference + FamixSQLTWithColumnReference + FamixTWithAccesses + FamixTWithInvocations',
 	#classTraits : 'FamixSQLTWithColumnContainerReference classTrait + FamixSQLTWithColumnReference classTrait + FamixTWithAccesses classTrait + FamixTWithInvocations classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLOrderByClause class >> annotation [
 
 	<FMClass: #OrderByClause super: #FamixSQLClause>

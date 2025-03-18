@@ -18,14 +18,16 @@ I model the special OLD local variable accessible from inside trigger stored pro
 
 "
 Class {
-	#name : #FamixSQLOldLocalVariable,
-	#superclass : #FamixSQLLocalVariable,
+	#name : 'FamixSQLOldLocalVariable',
+	#superclass : 'FamixSQLLocalVariable',
 	#traits : 'FamixSQLTColumnContainer',
 	#classTraits : 'FamixSQLTColumnContainer classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLOldLocalVariable class >> annotation [
 
 	<FMClass: #OldLocalVariable super: #FamixSQLLocalVariable>

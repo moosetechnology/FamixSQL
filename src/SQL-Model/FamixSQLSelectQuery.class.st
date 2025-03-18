@@ -4,12 +4,14 @@ I am an SELECT query.
 
 "
 Class {
-	#name : #FamixSQLSelectQuery,
-	#superclass : #FamixSQLCRUDQuery,
-	#category : #'SQL-Model-Entities'
+	#name : 'FamixSQLSelectQuery',
+	#superclass : 'FamixSQLCRUDQuery',
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLSelectQuery class >> annotation [
 
 	<FMClass: #SelectQuery super: #FamixSQLCRUDQuery>

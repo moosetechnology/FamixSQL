@@ -8,14 +8,16 @@
 
 "
 Class {
-	#name : #FamixSQLBehaviouralEntity,
-	#superclass : #FamixSQLEntity,
+	#name : 'FamixSQLBehaviouralEntity',
+	#superclass : 'FamixSQLEntity',
 	#traits : 'FamixTNamedEntity + TEntityMetaLevelDependency',
 	#classTraits : 'FamixTNamedEntity classTrait + TEntityMetaLevelDependency classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLBehaviouralEntity class >> annotation [
 
 	<FMClass: #BehaviouralEntity super: #FamixSQLEntity>

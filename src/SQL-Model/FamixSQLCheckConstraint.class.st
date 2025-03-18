@@ -4,12 +4,14 @@ I represent a CHECK constraint as defined in SQL standard.
 
 "
 Class {
-	#name : #FamixSQLCheckConstraint,
-	#superclass : #FamixSQLTableConstraint,
-	#category : #'SQL-Model-Entities'
+	#name : 'FamixSQLCheckConstraint',
+	#superclass : 'FamixSQLTableConstraint',
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLCheckConstraint class >> annotation [
 
 	<FMClass: #CheckConstraint super: #FamixSQLTableConstraint>

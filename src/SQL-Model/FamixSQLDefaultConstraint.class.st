@@ -4,12 +4,14 @@ I represent a DEFAULT constraint on a column
 
 "
 Class {
-	#name : #FamixSQLDefaultConstraint,
-	#superclass : #FamixSQLColumnConstraint,
-	#category : #'SQL-Model-Entities'
+	#name : 'FamixSQLDefaultConstraint',
+	#superclass : 'FamixSQLColumnConstraint',
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLDefaultConstraint class >> annotation [
 
 	<FMClass: #DefaultConstraint super: #FamixSQLColumnConstraint>

@@ -15,15 +15,17 @@ This concept does not exists in all DBMS (for example, in MySQL a trigger has a 
 
 "
 Class {
-	#name : #FamixSQLTriggerStoredProcedure,
-	#superclass : #FamixSQLStoredProcedure,
+	#name : 'FamixSQLTriggerStoredProcedure',
+	#superclass : 'FamixSQLStoredProcedure',
 	#instVars : [
 		'#trigger => FMMany type: #FamixSQLTrigger opposite: #storedProcedure'
 	],
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLTriggerStoredProcedure class >> annotation [
 
 	<FMClass: #TriggerStoredProcedure super: #FamixSQLStoredProcedure>
@@ -32,20 +34,20 @@ FamixSQLTriggerStoredProcedure class >> annotation [
 	^ self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FamixSQLTriggerStoredProcedure >> addTrigger: anObject [
 	<generated>
 	^ self trigger add: anObject
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLTriggerStoredProcedure >> isTriggerStoredProcedure [
 
 	<generated>
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTriggerStoredProcedure >> trigger [
 	"Relation named: #trigger type: #FamixSQLTrigger opposite: #storedProcedure"
 
@@ -54,7 +56,7 @@ FamixSQLTriggerStoredProcedure >> trigger [
 	^ trigger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTriggerStoredProcedure >> trigger: anObject [
 
 	<generated>

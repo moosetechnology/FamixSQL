@@ -11,14 +11,16 @@
 
 "
 Trait {
-	#name : #FamixSQLTType,
+	#name : 'FamixSQLTType',
 	#instVars : [
 		'#incomingReferences => FMMany type: #FamixSQLTTypeReference opposite: #type'
 	],
-	#category : #'SQL-Model-Traits'
+	#category : 'SQL-Model-Traits',
+	#package : 'SQL-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLTType classSide >> annotation [
 
 	<FMClass: #TType super: #Object>
@@ -27,13 +29,13 @@ FamixSQLTType classSide >> annotation [
 	^ self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FamixSQLTType >> addIncomingReference: anObject [
 	<generated>
 	^ self incomingReferences add: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTType >> incomingReferences [
 	"Relation named: #incomingReferences type: #FamixSQLTTypeReference opposite: #type"
 
@@ -42,7 +44,7 @@ FamixSQLTType >> incomingReferences [
 	^ incomingReferences
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTType >> incomingReferences: anObject [
 
 	<generated>

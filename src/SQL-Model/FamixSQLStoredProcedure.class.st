@@ -42,14 +42,16 @@ I am a stored procedure. That is to say, a function that is defined inside the d
 
 "
 Class {
-	#name : #FamixSQLStoredProcedure,
-	#superclass : #FamixSQLBehaviouralEntity,
+	#name : 'FamixSQLStoredProcedure',
+	#superclass : 'FamixSQLBehaviouralEntity',
 	#traits : 'FamixSQLTQueryContainer + FamixSQLTWithColumnContainerReference + FamixSQLTWithColumnReference + FamixSQLTWithTypeReference + FamixTInvocable + FamixTNamespace + FamixTWithAccesses + FamixTWithInvocations + FamixTWithLocalVariables + FamixTWithParameters + FamixTWithReferences',
 	#classTraits : 'FamixSQLTQueryContainer classTrait + FamixSQLTWithColumnContainerReference classTrait + FamixSQLTWithColumnReference classTrait + FamixSQLTWithTypeReference classTrait + FamixTInvocable classTrait + FamixTNamespace classTrait + FamixTWithAccesses classTrait + FamixTWithInvocations classTrait + FamixTWithLocalVariables classTrait + FamixTWithParameters classTrait + FamixTWithReferences classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLStoredProcedure class >> annotation [
 
 	<FMClass: #StoredProcedure super: #FamixSQLBehaviouralEntity>
@@ -58,7 +60,7 @@ FamixSQLStoredProcedure class >> annotation [
 	^ self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLStoredProcedure >> isStoredProcedure [
 
 	<generated>

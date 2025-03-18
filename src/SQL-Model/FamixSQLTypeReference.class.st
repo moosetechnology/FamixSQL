@@ -31,14 +31,16 @@ I am reference to a type of the model.
 
 "
 Class {
-	#name : #FamixSQLTypeReference,
-	#superclass : #FamixSQLEntity,
+	#name : 'FamixSQLTypeReference',
+	#superclass : 'FamixSQLEntity',
 	#traits : 'FamixSQLTTypeReference + FamixTAssociation',
 	#classTraits : 'FamixSQLTTypeReference classTrait + FamixTAssociation classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLTypeReference class >> annotation [
 
 	<FMClass: #TypeReference super: #FamixSQLEntity>

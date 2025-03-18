@@ -17,16 +17,18 @@
 
 "
 Trait {
-	#name : #FamixSQLTColumn,
+	#name : 'FamixSQLTColumn',
 	#instVars : [
 		'#columnsContainer => FMOne type: #FamixSQLTColumnContainer opposite: #columns',
 		'#incomingForeignKeyReferences => FMMany type: #FamixSQLForeignColumnReference opposite: #primaryKeyColumn',
 		'#incomingReferences => FMMany type: #FamixSQLTColumnReference opposite: #column'
 	],
-	#category : #'SQL-Model-Traits'
+	#category : 'SQL-Model-Traits',
+	#package : 'SQL-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLTColumn classSide >> annotation [
 
 	<FMClass: #TColumn super: #Object>
@@ -35,19 +37,19 @@ FamixSQLTColumn classSide >> annotation [
 	^ self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FamixSQLTColumn >> addIncomingForeignKeyReference: anObject [
 	<generated>
 	^ self incomingForeignKeyReferences add: anObject
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FamixSQLTColumn >> addIncomingReference: anObject [
 	<generated>
 	^ self incomingReferences add: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTColumn >> columnsContainer [
 	"Relation named: #columnsContainer type: #FamixSQLTColumnContainer opposite: #columns"
 
@@ -56,21 +58,21 @@ FamixSQLTColumn >> columnsContainer [
 	^ columnsContainer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTColumn >> columnsContainer: anObject [
 
 	<generated>
 	columnsContainer := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FamixSQLTColumn >> columnsContainerGroup [
 	<generated>
 	<navigation: 'ColumnsContainer'>
 	^ MooseSpecializedGroup with: self columnsContainer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTColumn >> incomingForeignKeyReferences [
 	"Relation named: #incomingForeignKeyReferences type: #FamixSQLForeignColumnReference opposite: #primaryKeyColumn"
 
@@ -79,14 +81,14 @@ FamixSQLTColumn >> incomingForeignKeyReferences [
 	^ incomingForeignKeyReferences
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTColumn >> incomingForeignKeyReferences: anObject [
 
 	<generated>
 	incomingForeignKeyReferences value: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTColumn >> incomingReferences [
 	"Relation named: #incomingReferences type: #FamixSQLTColumnReference opposite: #column"
 
@@ -95,7 +97,7 @@ FamixSQLTColumn >> incomingReferences [
 	^ incomingReferences
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTColumn >> incomingReferences: anObject [
 
 	<generated>

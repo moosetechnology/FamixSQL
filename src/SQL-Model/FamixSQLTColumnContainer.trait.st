@@ -18,15 +18,17 @@ I am an abstract super class for entities that contain columns. Two of my well-k
 
 "
 Trait {
-	#name : #FamixSQLTColumnContainer,
+	#name : 'FamixSQLTColumnContainer',
 	#instVars : [
 		'#columns => FMMany type: #FamixSQLTColumn opposite: #columnsContainer',
 		'#incomingReferences => FMMany type: #FamixSQLTColumnContainerReference opposite: #columnContainer'
 	],
-	#category : #'SQL-Model-Traits'
+	#category : 'SQL-Model-Traits',
+	#package : 'SQL-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLTColumnContainer classSide >> annotation [
 
 	<FMClass: #TColumnContainer super: #Object>
@@ -35,19 +37,19 @@ FamixSQLTColumnContainer classSide >> annotation [
 	^ self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FamixSQLTColumnContainer >> addColumn: anObject [
 	<generated>
 	^ self columns add: anObject
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FamixSQLTColumnContainer >> addIncomingReference: anObject [
 	<generated>
 	^ self incomingReferences add: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTColumnContainer >> columns [
 	"Relation named: #columns type: #FamixSQLTColumn opposite: #columnsContainer"
 
@@ -56,21 +58,21 @@ FamixSQLTColumnContainer >> columns [
 	^ columns
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTColumnContainer >> columns: anObject [
 
 	<generated>
 	columns value: anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FamixSQLTColumnContainer >> columnsGroup [
 	<generated>
 	<navigation: 'Columns'>
 	^ MooseSpecializedGroup withAll: self columns asSet
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTColumnContainer >> incomingReferences [
 	"Relation named: #incomingReferences type: #FamixSQLTColumnContainerReference opposite: #columnContainer"
 
@@ -79,7 +81,7 @@ FamixSQLTColumnContainer >> incomingReferences [
 	^ incomingReferences
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTColumnContainer >> incomingReferences: anObject [
 
 	<generated>

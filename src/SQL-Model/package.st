@@ -1,1 +1,1 @@
-Package { #name : #'SQL-Model' }
+Package { #name : 'SQL-Model' }

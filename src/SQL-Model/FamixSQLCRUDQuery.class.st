@@ -14,12 +14,14 @@ My subclasses represent these four queries.
 
 "
 Class {
-	#name : #FamixSQLCRUDQuery,
-	#superclass : #FamixSQLBehaviouralEntity,
-	#category : #'SQL-Model-Entities'
+	#name : 'FamixSQLCRUDQuery',
+	#superclass : 'FamixSQLBehaviouralEntity',
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLCRUDQuery class >> annotation [
 
 	<FMClass: #CRUDQuery super: #FamixSQLBehaviouralEntity>

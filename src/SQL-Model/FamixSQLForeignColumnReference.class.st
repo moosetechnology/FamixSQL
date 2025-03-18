@@ -16,16 +16,18 @@
 
 "
 Class {
-	#name : #FamixSQLForeignColumnReference,
-	#superclass : #FamixSQLEntity,
+	#name : 'FamixSQLForeignColumnReference',
+	#superclass : 'FamixSQLEntity',
 	#instVars : [
 		'#foreignKeyConstraint => FMOne type: #FamixSQLForeignKeyConstraint opposite: #foreignColumnReference',
 		'#primaryKeyColumn => FMOne type: #FamixSQLTColumn opposite: #incomingForeignKeyReferences'
 	],
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLForeignColumnReference class >> annotation [
 
 	<FMClass: #ForeignColumnReference super: #FamixSQLEntity>
@@ -34,7 +36,7 @@ FamixSQLForeignColumnReference class >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLForeignColumnReference >> foreignKeyConstraint [
 	"Relation named: #foreignKeyConstraint type: #FamixSQLForeignKeyConstraint opposite: #foreignColumnReference"
 
@@ -43,14 +45,14 @@ FamixSQLForeignColumnReference >> foreignKeyConstraint [
 	^ foreignKeyConstraint
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLForeignColumnReference >> foreignKeyConstraint: anObject [
 
 	<generated>
 	foreignKeyConstraint := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLForeignColumnReference >> primaryKeyColumn [
 	"Relation named: #primaryKeyColumn type: #FamixSQLTColumn opposite: #incomingForeignKeyReferences"
 
@@ -59,7 +61,7 @@ FamixSQLForeignColumnReference >> primaryKeyColumn [
 	^ primaryKeyColumn
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLForeignColumnReference >> primaryKeyColumn: anObject [
 
 	<generated>

@@ -13,14 +13,16 @@ I am an abstract class for constraints on Columns
 
 "
 Class {
-	#name : #FamixSQLColumnConstraint,
-	#superclass : #FamixSQLConstraint,
+	#name : 'FamixSQLColumnConstraint',
+	#superclass : 'FamixSQLConstraint',
 	#traits : 'FamixSQLTWithColumnReference',
 	#classTraits : 'FamixSQLTWithColumnReference classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLColumnConstraint class >> annotation [
 
 	<FMClass: #ColumnConstraint super: #FamixSQLConstraint>

@@ -13,14 +13,16 @@ I am an EXCEPT clause in a query
 
 "
 Class {
-	#name : #FamixSQLExceptClause,
-	#superclass : #FamixSQLClause,
+	#name : 'FamixSQLExceptClause',
+	#superclass : 'FamixSQLClause',
 	#traits : 'FamixSQLTWithColumnContainerReference',
 	#classTraits : 'FamixSQLTWithColumnContainerReference classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLExceptClause class >> annotation [
 
 	<FMClass: #ExceptClause super: #FamixSQLClause>

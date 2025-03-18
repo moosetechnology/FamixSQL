@@ -16,14 +16,16 @@
 
 "
 Class {
-	#name : #FamixSQLColumnContainerReference,
-	#superclass : #FamixSQLEntity,
+	#name : 'FamixSQLColumnContainerReference',
+	#superclass : 'FamixSQLEntity',
 	#traits : 'FamixSQLTColumnContainerReference',
 	#classTraits : 'FamixSQLTColumnContainerReference classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLColumnContainerReference class >> annotation [
 
 	<FMClass: #ColumnContainerReference super: #FamixSQLEntity>

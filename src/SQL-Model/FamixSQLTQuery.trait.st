@@ -13,14 +13,16 @@ I represent a CRUD query
 
 "
 Trait {
-	#name : #FamixSQLTQuery,
+	#name : 'FamixSQLTQuery',
 	#instVars : [
 		'#containerEntity => FMOne type: #FamixSQLTQueryContainer opposite: #queries'
 	],
-	#category : #'SQL-Model-Traits'
+	#category : 'SQL-Model-Traits',
+	#package : 'SQL-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLTQuery classSide >> annotation [
 
 	<FMClass: #TQuery super: #Object>
@@ -29,7 +31,7 @@ FamixSQLTQuery classSide >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTQuery >> containerEntity [
 	"Relation named: #containerEntity type: #FamixSQLTQueryContainer opposite: #queries"
 
@@ -38,14 +40,14 @@ FamixSQLTQuery >> containerEntity [
 	^ containerEntity
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTQuery >> containerEntity: anObject [
 
 	<generated>
 	containerEntity := anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FamixSQLTQuery >> containerEntityGroup [
 	<generated>
 	<navigation: 'ContainerEntity'>

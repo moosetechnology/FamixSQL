@@ -4,12 +4,14 @@ I am an INSERT query.
 
 "
 Class {
-	#name : #FamixSQLInsertQuery,
-	#superclass : #FamixSQLCRUDQuery,
-	#category : #'SQL-Model-Entities'
+	#name : 'FamixSQLInsertQuery',
+	#superclass : 'FamixSQLCRUDQuery',
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLInsertQuery class >> annotation [
 
 	<FMClass: #InsertQuery super: #FamixSQLCRUDQuery>

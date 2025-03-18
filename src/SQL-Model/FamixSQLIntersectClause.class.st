@@ -13,14 +13,16 @@ I am an INTERSECT clause in a query
 
 "
 Class {
-	#name : #FamixSQLIntersectClause,
-	#superclass : #FamixSQLClause,
+	#name : 'FamixSQLIntersectClause',
+	#superclass : 'FamixSQLClause',
 	#traits : 'FamixSQLTWithColumnContainerReference',
 	#classTraits : 'FamixSQLTWithColumnContainerReference classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLIntersectClause class >> annotation [
 
 	<FMClass: #IntersectClause super: #FamixSQLClause>

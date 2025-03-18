@@ -25,17 +25,19 @@ I am a namespace. I hold entities to define a name scope where name duplicates a
 
 "
 Class {
-	#name : #FamixSQLNamespace,
-	#superclass : #FamixSQLStructuralEntity,
+	#name : 'FamixSQLNamespace',
+	#superclass : 'FamixSQLStructuralEntity',
 	#traits : 'FamixTNamespace',
 	#classTraits : 'FamixTNamespace classTrait',
 	#instVars : [
 		'#table => FMMany type: #FamixSQLTable opposite: #parentNamespace'
 	],
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLNamespace class >> annotation [
 
 	<FMClass: #Namespace super: #FamixSQLStructuralEntity>
@@ -44,13 +46,13 @@ FamixSQLNamespace class >> annotation [
 	^ self
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 FamixSQLNamespace >> addTable: anObject [
 	<generated>
 	^ self table add: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLNamespace >> table [
 	"Relation named: #table type: #FamixSQLTable opposite: #parentNamespace"
 
@@ -59,14 +61,14 @@ FamixSQLNamespace >> table [
 	^ table
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLNamespace >> table: anObject [
 
 	<generated>
 	table value: anObject
 ]
 
-{ #category : #navigation }
+{ #category : 'navigation' }
 FamixSQLNamespace >> tableGroup [
 	<generated>
 	<navigation: 'Table'>

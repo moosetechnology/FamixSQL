@@ -32,17 +32,19 @@ I am reference to a column in a table of the model.
 
 "
 Class {
-	#name : #FamixSQLColumnReference,
-	#superclass : #FamixSQLEntity,
+	#name : 'FamixSQLColumnReference',
+	#superclass : 'FamixSQLEntity',
 	#traits : 'FamixSQLTColumnReference',
 	#classTraits : 'FamixSQLTColumnReference classTrait',
 	#instVars : [
 		'#isWildCardReference => FMProperty'
 	],
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLColumnReference class >> annotation [
 
 	<FMClass: #ColumnReference super: #FamixSQLEntity>
@@ -51,7 +53,7 @@ FamixSQLColumnReference class >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLColumnReference >> isWildCardReference [
 
 	<FMProperty: #isWildCardReference type: #Boolean>
@@ -59,7 +61,7 @@ FamixSQLColumnReference >> isWildCardReference [
 	^ isWildCardReference
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLColumnReference >> isWildCardReference: anObject [
 	<generated>
 	isWildCardReference := anObject

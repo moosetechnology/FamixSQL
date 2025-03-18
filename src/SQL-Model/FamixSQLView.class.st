@@ -31,14 +31,16 @@ I am a view. I can be used transparently as a table but I do not hold data. My d
 
 "
 Class {
-	#name : #FamixSQLView,
-	#superclass : #FamixSQLBehaviouralEntity,
+	#name : 'FamixSQLView',
+	#superclass : 'FamixSQLBehaviouralEntity',
 	#traits : 'FamixSQLTColumnContainer + FamixSQLTQueryContainer + FamixTNamespace',
 	#classTraits : 'FamixSQLTColumnContainer classTrait + FamixSQLTQueryContainer classTrait + FamixTNamespace classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLView class >> annotation [
 
 	<FMClass: #View super: #FamixSQLBehaviouralEntity>
@@ -47,7 +49,7 @@ FamixSQLView class >> annotation [
 	^ self
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 FamixSQLView >> isView [
 
 	<generated>

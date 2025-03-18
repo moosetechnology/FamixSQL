@@ -11,14 +11,16 @@
 
 "
 Class {
-	#name : #FamixSQLConstraint,
-	#superclass : #FamixSQLStructuralEntity,
+	#name : 'FamixSQLConstraint',
+	#superclass : 'FamixSQLStructuralEntity',
 	#traits : 'FamixSQLTWithColumnReference',
 	#classTraits : 'FamixSQLTWithColumnReference classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLConstraint class >> annotation [
 
 	<FMClass: #Constraint super: #FamixSQLStructuralEntity>

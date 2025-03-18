@@ -22,14 +22,16 @@
 
 "
 Class {
-	#name : #FamixSQLColumn,
-	#superclass : #FamixSQLStructuralEntity,
+	#name : 'FamixSQLColumn',
+	#superclass : 'FamixSQLStructuralEntity',
 	#traits : 'FamixSQLTColumn + FamixSQLTWithTypeReference',
 	#classTraits : 'FamixSQLTColumn classTrait + FamixSQLTWithTypeReference classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLColumn class >> annotation [
 
 	<FMClass: #Column super: #FamixSQLStructuralEntity>

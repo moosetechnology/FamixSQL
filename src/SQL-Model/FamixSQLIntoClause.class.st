@@ -14,14 +14,16 @@ I am an INTO clause in a query
 
 "
 Class {
-	#name : #FamixSQLIntoClause,
-	#superclass : #FamixSQLClause,
+	#name : 'FamixSQLIntoClause',
+	#superclass : 'FamixSQLClause',
 	#traits : 'FamixSQLTWithColumnContainerReference + FamixSQLTWithColumnReference',
 	#classTraits : 'FamixSQLTWithColumnContainerReference classTrait + FamixSQLTWithColumnReference classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLIntoClause class >> annotation [
 
 	<FMClass: #IntoClause super: #FamixSQLClause>

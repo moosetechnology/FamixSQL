@@ -10,14 +10,16 @@ I am an abstract superclass for structural entities. A structural entity is an e
 
 "
 Class {
-	#name : #FamixSQLStructuralEntity,
-	#superclass : #FamixSQLEntity,
+	#name : 'FamixSQLStructuralEntity',
+	#superclass : 'FamixSQLEntity',
 	#traits : 'FamixTNamedEntity + TEntityMetaLevelDependency',
 	#classTraits : 'FamixTNamedEntity classTrait + TEntityMetaLevelDependency classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLStructuralEntity class >> annotation [
 
 	<FMClass: #StructuralEntity super: #FamixSQLEntity>

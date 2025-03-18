@@ -16,14 +16,16 @@ I am a SELECT clause in a query
 
 "
 Class {
-	#name : #FamixSQLSelectClause,
-	#superclass : #FamixSQLClause,
+	#name : 'FamixSQLSelectClause',
+	#superclass : 'FamixSQLClause',
 	#traits : 'FamixSQLTWithColumnContainerReference + FamixSQLTWithColumnReference + FamixTWithAccesses + FamixTWithInvocations',
 	#classTraits : 'FamixSQLTWithColumnContainerReference classTrait + FamixSQLTWithColumnReference classTrait + FamixTWithAccesses classTrait + FamixTWithInvocations classTrait',
-	#category : #'SQL-Model-Entities'
+	#category : 'SQL-Model-Entities',
+	#package : 'SQL-Model',
+	#tag : 'Entities'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLSelectClause class >> annotation [
 
 	<FMClass: #SelectClause super: #FamixSQLClause>

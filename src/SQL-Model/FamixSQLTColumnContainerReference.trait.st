@@ -16,15 +16,17 @@
 
 "
 Trait {
-	#name : #FamixSQLTColumnContainerReference,
+	#name : 'FamixSQLTColumnContainerReference',
 	#instVars : [
 		'#referencer => FMOne type: #FamixSQLTWithColumnContainerReference opposite: #references',
 		'#columnContainer => FMOne type: #FamixSQLTColumnContainer opposite: #incomingReferences'
 	],
-	#category : #'SQL-Model-Traits'
+	#category : 'SQL-Model-Traits',
+	#package : 'SQL-Model',
+	#tag : 'Traits'
 }
 
-{ #category : #meta }
+{ #category : 'meta' }
 FamixSQLTColumnContainerReference classSide >> annotation [
 
 	<FMClass: #TColumnContainerReference super: #Object>
@@ -33,7 +35,7 @@ FamixSQLTColumnContainerReference classSide >> annotation [
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTColumnContainerReference >> columnContainer [
 	"Relation named: #columnContainer type: #FamixSQLTColumnContainer opposite: #incomingReferences"
 
@@ -42,14 +44,14 @@ FamixSQLTColumnContainerReference >> columnContainer [
 	^ columnContainer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTColumnContainerReference >> columnContainer: anObject [
 
 	<generated>
 	columnContainer := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTColumnContainerReference >> referencer [
 	"Relation named: #referencer type: #FamixSQLTWithColumnContainerReference opposite: #references"
 
@@ -58,7 +60,7 @@ FamixSQLTColumnContainerReference >> referencer [
 	^ referencer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 FamixSQLTColumnContainerReference >> referencer: anObject [
 
 	<generated>
