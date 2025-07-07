@@ -2,12 +2,13 @@
 **Test titre**
 "
 Class {
-	#name : #BaselineOfFamixSQL,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfFamixSQL
+	#name : 'BaselineOfFamixSQL',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfFamixSQL',
+	#package : 'BaselineOfFamixSQL'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfFamixSQL >> baseline: spec [
 
 	<baseline>
@@ -17,16 +18,16 @@ BaselineOfFamixSQL >> baseline: spec [
 		self defineGroups: spec ]
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfFamixSQL >> customProjectAttributes [
 
-	^ RPackageOrganizer default packages
+	^ PackageOrganizer default packages
 		  detect: [ :package | package name = 'BaselineOfFamix' ]
 		  ifFound: [ #(  ) ]
 		  ifNone: [ #( #NeedsMoose ) ]
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfFamixSQL >> defineDependencies: spec [
 
 	spec
@@ -36,11 +37,11 @@ BaselineOfFamixSQL >> defineDependencies: spec [
 	self famix: spec
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfFamixSQL >> defineGroups: spec [
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfFamixSQL >> definePackages: spec [
 
 	spec
@@ -61,7 +62,7 @@ BaselineOfFamixSQL >> definePackages: spec [
 		with: [ spec requires: #( 'SQL-Model' ) ]
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfFamixSQL >> famix: spec [
 
 	spec for: #NeedsMoose do: [

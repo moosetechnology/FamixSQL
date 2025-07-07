@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfFamixSQL }
+Package { #name : 'BaselineOfFamixSQL' }
