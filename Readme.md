@@ -14,7 +14,7 @@ In the Moose image, in a playground (`Ctrl+O`, `Ctrl+W`), perform:
 ```st
 Metacello new
   baseline: 'FamixSQL';
-  repository: 'github://moosetechnology/FamixSQL:main/src';
+  repository: 'github://moosetechnology/FamixSQL:v2';
   load.
 ```
 
